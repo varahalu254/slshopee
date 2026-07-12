@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, Link, useRouterState, redirect } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   LayoutDashboard, Package, Tag, ShoppingCart, Users, Image,
   BarChart3, MessageCircle, Bell, LogOut, Menu, X, ChevronRight,
@@ -32,19 +32,19 @@ function AdminLayout() {
   const isActive = (to: string, exact?: boolean) =>
     exact ? path === to : path === to || path.startsWith(to + "/");
 
-  // Client-side authentication check due to SSR constraint with localStorage
-  if (typeof window !== "undefined" && isAuthorized === null) {
+  useEffect(() => {
+    let auth = false;
     try {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
-      if (user?.role === "admin") {
-        setIsAuthorized(true);
-      } else {
-        window.location.href = "/Login";
-      }
-    } catch {
+      auth = user?.role === "admin";
+    } catch { }
+
+    if (auth) {
+      setIsAuthorized(true);
+    } else {
       window.location.href = "/Login";
     }
-  }
+  }, []);
 
   if (!isAuthorized) {
     return <div className="min-h-screen bg-[oklch(0.97_0.005_260)]" />; // blank space while redirecting
