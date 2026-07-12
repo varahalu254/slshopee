@@ -88,7 +88,7 @@ export const INITIAL_PRODUCTS: Product[] = PRODUCTS.map((p, i) => ({
   priceNum: Number(p.price.replace(/[₹,]/g, "")),
   category: p.category,
   image: p.image,
-  stock: Math.floor(Math.random() * 40) + 5,
+  stock: (i * 7 + 3) % 40 + 5,
   status: i < 10 ? "active" : "inactive",
 }));
 

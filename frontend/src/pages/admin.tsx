@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, Link, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Outlet, Link, useRouterState, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   LayoutDashboard, Package, Tag, ShoppingCart, Users, Image,
@@ -25,11 +25,30 @@ const NAV_ITEMS = [
 
 function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
   const routerState = useRouterState();
   const path = routerState.location.pathname;
 
   const isActive = (to: string, exact?: boolean) =>
     exact ? path === to : path === to || path.startsWith(to + "/");
+
+  // Client-side authentication check due to SSR constraint with localStorage
+  if (typeof window !== "undefined" && isAuthorized === null) {
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (user?.role === "admin") {
+        setIsAuthorized(true);
+      } else {
+        window.location.href = "/Login";
+      }
+    } catch {
+      window.location.href = "/Login";
+    }
+  }
+
+  if (!isAuthorized) {
+    return <div className="min-h-screen bg-[oklch(0.97_0.005_260)]" />; // blank space while redirecting
+  }
 
   return (
     <div className="flex min-h-screen bg-[oklch(0.97_0.005_260)]">
@@ -99,7 +118,16 @@ function AdminLayout() {
           >
             <Store className="h-4 w-4" /> View Store
           </Link>
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-destructive hover:bg-destructive/10">
+          <button
+            onClick={() => {
+              if (window.confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem("user");
+                window.dispatchEvent(new Event("user-changed"));
+                window.location.href = "/";
+              }
+            }}
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-destructive hover:bg-destructive/10"
+          >
             <LogOut className="h-4 w-4" /> Logout
           </button>
         </div>
@@ -125,6 +153,20 @@ function AdminLayout() {
               <div className="h-2 w-2 rounded-full bg-brand animate-pulse" />
               <span className="text-xs font-semibold text-brand">Admin</span>
             </div>
+            <button
+              onClick={() => {
+                if (window.confirm("Are you sure you want to log out?")) {
+                  localStorage.removeItem("user");
+                  window.dispatchEvent(new Event("user-changed"));
+                  window.location.href = "/";
+                }
+              }}
+              className="flex items-center gap-2 rounded-lg ml-2 px-3 py-1.5 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10"
+              title="Logout"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
           </div>
         </header>
 
