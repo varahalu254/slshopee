@@ -63,9 +63,13 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
-          <p>Multi-branch electronics & furniture showroom.</p>
+          <div className="flex gap-4">
+            <Link to="/privacy-policy" className="hover:text-brand transition-colors">Privacy Policy</Link>
+            <Link to="/refund-policy" className="hover:text-brand transition-colors">Refund Policy</Link>
+            <Link to="/terms-conditions" className="hover:text-brand transition-colors">Terms & Conditions</Link>
+          </div>
         </div>
       </div>
     </footer>

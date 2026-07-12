@@ -107,14 +107,14 @@
 }
 
 :root {
-  --brand: oklch(0.58 0.22 27);
+  --brand: oklch(0.52 0.18 10);
   --brand-foreground: oklch(1 0 0);
-  --brand-dark: oklch(0.45 0.19 27);
+  --brand-dark: oklch(0.42 0.16 10);
   --whatsapp: oklch(0.72 0.18 155);
   --whatsapp-foreground: oklch(1 0 0);
-  --gradient-brand: linear-gradient(135deg, oklch(0.58 0.22 27), oklch(0.5 0.24 20));
-  --gradient-hero: radial-gradient(ellipse at top right, oklch(0.58 0.22 27 / 0.18), transparent 60%), radial-gradient(ellipse at bottom left, oklch(0.72 0.16 30 / 0.12), transparent 55%);
-  --shadow-glow: 0 20px 60px -20px oklch(0.58 0.22 27 / 0.45);
+  --gradient-brand: linear-gradient(135deg, oklch(0.52 0.18 10), oklch(0.44 0.20 5));
+  --gradient-hero: radial-gradient(ellipse at top right, oklch(0.52 0.18 10 / 0.18), transparent 60%), radial-gradient(ellipse at bottom left, oklch(0.72 0.16 30 / 0.12), transparent 55%);
+  --shadow-glow: 0 20px 60px -20px oklch(0.52 0.18 10 / 0.45);
   --shadow-card: 0 8px 30px -10px oklch(0.2 0.02 260 / 0.15);
 }
 
@@ -199,3 +199,4 @@
 }
 
 
+.pt-32 { padding-top: calc(var(--spacing) * 10); }

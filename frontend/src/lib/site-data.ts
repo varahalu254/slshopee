@@ -78,7 +78,7 @@ export function waLink(message = "Hi SL SHOPEE, I'd like to enquire about a prod
 export const NAV = [
   { to: "/", label: "Home" },
   { to: "/products", label: "Products" },
-  { to: "/branches", label: "Branches" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
