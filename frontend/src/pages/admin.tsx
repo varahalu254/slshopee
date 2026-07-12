@@ -8,6 +8,19 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
+  beforeLoad: () => {
+    let auth = false;
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      auth = user?.role === "admin";
+    } catch { }
+
+    if (!auth) {
+      throw redirect({
+        to: "/Login",
+      });
+    }
+  },
   component: AdminLayout,
 });
 
@@ -25,30 +38,11 @@ const NAV_ITEMS = [
 
 function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
   const routerState = useRouterState();
   const path = routerState.location.pathname;
 
   const isActive = (to: string, exact?: boolean) =>
     exact ? path === to : path === to || path.startsWith(to + "/");
-
-  useEffect(() => {
-    let auth = false;
-    try {
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      auth = user?.role === "admin";
-    } catch { }
-
-    if (auth) {
-      setIsAuthorized(true);
-    } else {
-      window.location.href = "/Login";
-    }
-  }, []);
-
-  if (!isAuthorized) {
-    return <div className="min-h-screen bg-[oklch(0.97_0.005_260)]" />; // blank space while redirecting
-  }
 
   return (
     <div className="flex min-h-screen bg-[oklch(0.97_0.005_260)]">
