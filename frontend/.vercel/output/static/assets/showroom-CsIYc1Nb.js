@@ -1,0 +1,1 @@
+var e=`/assets/showroom-kWcVDRvx.jpg`;export{e as t};
