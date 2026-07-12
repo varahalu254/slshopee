@@ -19,7 +19,9 @@ export const SITE = {
   whatsapp: "919000000000",
   email: "hello@slshopee.in",
   hours: "Mon – Sun · 9:30 AM – 9:00 PM",
+  url: "https://slshopee.vercel.app/",
 };
+
 
 export const BRANCHES = [
   { slug: "achampeta", name: "Achampeta (Kakinada)", address: "Main Road, Achampeta, Kakinada, Andhra Pradesh", phone: "+91 90000 00001" },
