@@ -109,11 +109,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ overflowX: "hidden", width: "100%" }}>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body style={{ overflowX: "hidden", width: "100%", margin: 0 }}>
         {children}
         <Scripts />
       </body>
@@ -128,9 +128,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-background">
         {!isAdminRoute && <SiteHeader />}
-        <main className="flex-1">
+        <main className="w-full flex-1">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>

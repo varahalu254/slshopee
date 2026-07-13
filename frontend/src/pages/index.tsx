@@ -37,7 +37,7 @@ export function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative w-full pt-8 bg-hero-gradient">
+    <section className="relative w-full overflow-hidden pt-8 bg-hero-gradient">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {[...Array(14)].map((_, i) => (
           <motion.span
