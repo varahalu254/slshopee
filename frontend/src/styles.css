@@ -154,16 +154,24 @@
 }
 
 @layer base {
-  * {
+  *, *::before, *::after {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
 
-  html, body {
+  html {
     width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
+    scrollbar-gutter: stable;
   }
 
   body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
