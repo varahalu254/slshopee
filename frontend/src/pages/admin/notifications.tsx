@@ -18,7 +18,7 @@ const TYPE_STYLES: Record<string, { bg: string; icon: typeof Bell }> = {
     general: { bg: "bg-amber-100 text-amber-700", icon: BellRing },
 };
 
-export function NotificationsManagement() {
+function NotificationsManagement() {
     const [notifications, setNotifications] = useState<NotificationAPI[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");

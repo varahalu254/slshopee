@@ -35,7 +35,7 @@ const STATUS_COLORS = ["oklch(0.6 0.18 150)", "oklch(0.55 0.16 240)", "oklch(0.7
 const totalRevenue = INITIAL_ORDERS.filter((o) => o.status !== "cancelled").reduce((s, o) => s + o.amountNum, 0);
 const avgOrderValue = Math.round(totalRevenue / INITIAL_ORDERS.filter((o) => o.status !== "cancelled").length);
 
-export function AnalyticsPage() {
+function AnalyticsPage() {
     return (
         <div className="space-y-6">
             <div>
@@ -107,7 +107,7 @@ export function AnalyticsPage() {
                 <div className="rounded-2xl border border-border/60 bg-white p-5 shadow-elevated">
                     <h3 className="font-display font-semibold">Sales by Category</h3>
                     <p className="mt-0.5 text-xs text-muted-foreground">Revenue share breakdown</p>
-                <div className="mt-2 flex items-center justify-center">
+                    <div className="mt-2 flex items-center justify-center">
                         <PieChart width={180} height={180}>
                             <Pie data={CATEGORY_SALES} dataKey="revenue" cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={3}>
                                 {CATEGORY_SALES.map((_, i) => (

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/admin/customers")({
     component: CustomersManagement,
 });
 
-export function CustomersManagement() {
+function CustomersManagement() {
     const [customers, setCustomers] = useState<CustomerAPI[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");

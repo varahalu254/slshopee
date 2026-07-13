@@ -20,7 +20,7 @@ const totalRevenue = INITIAL_ORDERS.filter(o => o.status !== "cancelled").reduce
 const pendingOrders = INITIAL_ORDERS.filter(o => o.status === "pending").length;
 const lowStock = INITIAL_PRODUCTS.filter(p => p.stock < 8).length;
 
-export function AdminDashboard() {
+function AdminDashboard() {
   const recentOrders = INITIAL_ORDERS.slice(0, 6);
 
   return (

@@ -20,7 +20,7 @@ const SEGMENT_STYLES: Record<string, string> = {
     category: "bg-amber-50 text-amber-700",
 };
 
-export function CampaignsManagement() {
+function CampaignsManagement() {
     const [campaigns, setCampaigns] = useState<CampaignAPI[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");

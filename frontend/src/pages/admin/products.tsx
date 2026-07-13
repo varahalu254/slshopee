@@ -14,7 +14,7 @@ const STATUS_STYLES: Record<string, string> = {
   out_of_stock: "bg-red-100 text-red-700",
 };
 
-export function ProductsManagement() {
+function ProductsManagement() {
   const [products, setProducts] = useState<ProductAPI[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");

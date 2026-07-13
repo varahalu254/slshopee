@@ -9,7 +9,7 @@ export const Route = createFileRoute("/admin/gallery")({
 
 const GALLERY_CATEGORIES = ["All", "Furniture", "Televisions", "Air Conditioners", "Branches", "Promotions", "Washing Machines"];
 
-export function GalleryManagement() {
+function GalleryManagement() {
     const [items, setItems] = useState<GalleryItemAPI[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");

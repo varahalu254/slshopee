@@ -22,7 +22,7 @@ const PAYMENT_STYLES: Record<string, string> = {
     card: "bg-sky-50 text-sky-700",
 };
 
-export function OrdersManagement() {
+function OrdersManagement() {
     const [orders, setOrders] = useState<OrderAPI[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");

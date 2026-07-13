@@ -7,7 +7,7 @@ export const Route = createFileRoute("/admin/categories")({
   component: CategoriesManagement,
 });
 
-export function CategoriesManagement() {
+function CategoriesManagement() {
   const [cats, setCats] = useState<CategoryAPI[]>([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState<"add" | "edit" | null>(null);
