@@ -71,9 +71,9 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:3000',
-  'https://geethikadigitalworld.com',
-  'https://www.geethikadigitalworld.com',
-  'https://geethika-digital-world.onrender.com',
+  'https://slshopee.vercel.app',
+  'https://www.slshopee.vercel.app',
+  'https://sl-shopee.onrender.com',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
@@ -121,8 +121,8 @@ const cleanFrontendPath = rawFrontendPath.includes('=')
 const candidatePaths = [
   cleanFrontendPath ? path.resolve(cleanFrontendPath) : null,
   path.join(__dirname, 'public'),
-  path.resolve('/home/u327292494/domains/geethikadigitalworld.com/nodejs/public'),
-  path.resolve('/home/u327292494/domains/geethikadigitalworld.com/public_html'),
+  path.resolve('/home/u327292494/domains/slshopee.vercel.app/nodejs/public'),
+  path.resolve('/home/u327292494/domains/slshopee.vercel.app/public_html'),
 ].filter(Boolean);
 
 const frontendPath = candidatePaths.find(p => fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html')));
@@ -171,7 +171,7 @@ app.get('*', (req, res) => {
     res.sendFile(indexPath);
   } else {
     res.status(503).json({
-      message: 'Geethika Digital World API',
+      message: 'SL SHOPEE API',
       version: '2.0.0',
       note: 'Frontend is being deployed. Please refresh in a moment.',
     });
@@ -184,7 +184,7 @@ app.use(errorHandler);
 // Start server
 const server = app.listen(PORT, () => {
   console.log(
-    `[${new Date().toISOString()}] Geethika API listening on port ${PORT} (${process.env.NODE_ENV || 'development'})`
+    `[${new Date().toISOString()}] SL SHOPEE API listening on port ${PORT} (${process.env.NODE_ENV || 'development'})`
   );
 });
 

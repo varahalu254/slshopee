@@ -21,7 +21,7 @@ const TermsConditionsPage = () => {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              Welcome to Geethika Digital World. By accessing and using our website and services, you agree to be bound by these Terms and Conditions. Please read them carefully before making any purchase or using our services.
+              Welcome to SL SHOPEE. By accessing and using our website and services, you agree to be bound by these Terms and Conditions. Please read them carefully before making any purchase or using our services.
             </p>
           </section>
 
@@ -163,7 +163,7 @@ const TermsConditionsPage = () => {
             <h2 className="text-2xl font-bold text-valentine-red mb-4">7. Intellectual Property</h2>
             <div className="space-y-3 text-gray-700">
               <p>
-                All content on this website, including text, graphics, logos, images, and software, is the property of Geethika Digital World and protected by copyright and trademark laws.
+                All content on this website, including text, graphics, logos, images, and software, is the property of SL SHOPEE and protected by copyright and trademark laws.
               </p>
               <p>
                 You may not reproduce, distribute, modify, or create derivative works without our express written permission.
@@ -179,7 +179,7 @@ const TermsConditionsPage = () => {
             </div>
             <div className="space-y-3 text-gray-700">
               <p>
-                To the maximum extent permitted by law, Geethika Digital World shall not be liable for:
+                To the maximum extent permitted by law, SL SHOPEE shall not be liable for:
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Indirect, incidental, or consequential damages</li>
@@ -214,7 +214,7 @@ const TermsConditionsPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-valentine-red mb-4">10. Indemnification</h2>
             <p className="text-gray-700">
-              You agree to indemnify and hold harmless Geethika Digital World from any claims, damages, losses, or expenses arising from your violation of these Terms or your use of our services.
+              You agree to indemnify and hold harmless SL SHOPEE from any claims, damages, losses, or expenses arising from your violation of these Terms or your use of our services.
             </p>
           </section>
 
@@ -240,7 +240,7 @@ const TermsConditionsPage = () => {
             <div className="text-gray-700 space-y-2">
               <p>For questions about these Terms and Conditions, contact us:</p>
               <div className="space-y-1">
-                <p><strong>Business Name:</strong> Geethika Digital World</p>
+                <p><strong>Business Name:</strong> SL SHOPEE</p>
                 <p><strong>Email:</strong> <a href="mailto:geethikaphotoplanet9@gmail.com" className="text-valentine-red hover:underline">geethikaphotoplanet9@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+919492686421" className="text-valentine-red hover:underline">+91 94926 86421</a></p>
                 <p><strong>Address:</strong> 123 Main Street, City Center, Your City, State - 123456, India</p>

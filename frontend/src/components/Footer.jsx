@@ -16,7 +16,7 @@ const Footer = () => {
           <div className="space-y-3">
             <Link to="/" className="flex flex-col gap-2 group">
               <span className="text-[28px] font-display font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">
-                Geethika Digital World
+                SL SHOPEE
               </span>
               <p className="text-[10px] font-body font-bold text-gray-300 uppercase tracking-[0.3em]">
                 PRESERVING YOUR MOMENTS
@@ -55,7 +55,7 @@ const Footer = () => {
           <div className="flex items-start justify-start lg:justify-end">
             <div className="rounded-[8px] overflow-hidden border border-gray-100 shadow-sm mr-0 lg:mr-4" style={{ width: 306, height: 172 }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d952.4117781428866!2d81.52284926957388!3d16.544234814703773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37d30a6f6646ab%3A0x349161fbbf6c561d!2sGeethika%20digital%20world!5e0!3m2!1sen!2sin!4v1747568400000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d952.4117781428866!2d81.52284926957388!3d16.544234814703773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37d30a6f6646ab%3A0x349161fbbf6c561d!2sSL SHOPEE%20digital%20world!5e0!3m2!1sen!2sin!4v1747568400000!5m2!1sen!2sin"
                 width="306"
                 height="172"
                 style={{ border: 0, display: 'block' }}
@@ -72,7 +72,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[10px] text-gray-400 font-body font-bold tracking-[0.2em] uppercase">
-            © {new Date().getFullYear()} Geethika Digital World. Crafted with sentiment.
+            © {new Date().getFullYear()} SL SHOPEE. Crafted with sentiment.
           </p>
           
           <div className="flex items-center gap-8">

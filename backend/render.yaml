@@ -1,10 +1,10 @@
-# Render Blueprint for Geethika Digital World
+# Render Blueprint for SL SHOPEE
 # MongoDB version - PostgreSQL removed
 
 services:
   # Backend API
   - type: web
-    name: geethika-backend
+    name: sl-shopee-backend
     env: node
     region: singapore
     plan: free

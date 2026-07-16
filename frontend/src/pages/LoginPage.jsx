@@ -105,7 +105,7 @@ const LoginPage = () => {
         <div className="w-full max-w-md space-y-12">
           <div>
             <Link to="/">
-              <img src="/logo.png" className="h-16 w-auto mb-8" alt="Geethika Digital World" />
+              <img src="/logo.png" className="h-16 w-auto mb-8" alt="SL SHOPEE" />
             </Link>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">Welcome Back</h1>
             <p className="text-gray-400 font-body">Sign in to your account to continue your journey.</p>

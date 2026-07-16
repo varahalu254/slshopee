@@ -62,7 +62,7 @@ const AdminLayout = ({ children }) => {
       `}>
         <div className="p-6 border-b flex-shrink-0">
           <h1 className="text-2xl font-bold text-orange-primary">Admin Panel</h1>
-          <p className="text-sm text-gray-600 mt-1">Geethika Digital World</p>
+          <p className="text-sm text-gray-600 mt-1">SL SHOPEE</p>
         </div>
 
         <nav className="p-4 flex-1 overflow-y-auto">

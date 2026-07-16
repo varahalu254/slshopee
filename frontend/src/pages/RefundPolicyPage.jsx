@@ -21,7 +21,7 @@ const RefundPolicyPage = () => {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              At Geethika Digital World, we strive to ensure customer satisfaction. This policy outlines our refund and cancellation procedures for products and services. Please read carefully before making a purchase.
+              At SL SHOPEE, we strive to ensure customer satisfaction. This policy outlines our refund and cancellation procedures for products and services. Please read carefully before making a purchase.
             </p>
           </section>
 
@@ -63,7 +63,7 @@ const RefundPolicyPage = () => {
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-2">1.2 Cancellation by Geethika Digital World</h3>
+                <h3 className="font-semibold text-lg mb-2">1.2 Cancellation by SL SHOPEE</h3>
                 <p className="mb-2">We reserve the right to cancel orders in the following cases:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Product unavailability or stock issues</li>
@@ -263,7 +263,7 @@ const RefundPolicyPage = () => {
             <div className="text-gray-700 space-y-2">
               <p>If you have questions about our Refund & Cancellation Policy, please contact us:</p>
               <div className="space-y-1">
-                <p><strong>Business Name:</strong> Geethika Digital World</p>
+                <p><strong>Business Name:</strong> SL SHOPEE</p>
                 <p><strong>Email:</strong> <a href="mailto:geethikaphotoplanet9@gmail.com" className="text-valentine-red hover:underline">geethikaphotoplanet9@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+919492686421" className="text-valentine-red hover:underline">+91 94926 86421</a></p>
                 <p><strong>Address:</strong> 123 Main Street, City Center, Your City, State - 123456, India</p>

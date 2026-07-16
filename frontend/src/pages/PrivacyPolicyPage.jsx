@@ -21,7 +21,7 @@ const PrivacyPolicyPage = () => {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              At Geethika Digital World, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and protect your data when you use our website and services.
+              At SL SHOPEE, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and protect your data when you use our website and services.
             </p>
           </section>
 
@@ -187,7 +187,7 @@ const PrivacyPolicyPage = () => {
             <div className="text-gray-700 space-y-2">
               <p>If you have any questions about this Privacy Policy, please contact us:</p>
               <div className="space-y-1">
-                <p><strong>Business Name:</strong> Geethika Digital World</p>
+                <p><strong>Business Name:</strong> SL SHOPEE</p>
                 <p><strong>Email:</strong> <a href="mailto:geethikaphotoplanet9@gmail.com" className="text-valentine-red hover:underline">geethikaphotoplanet9@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+919492686421" className="text-valentine-red hover:underline">+91 94926 86421</a></p>
                 <p><strong>Address:</strong> 123 Main Street, City Center, Your City, State - 123456, India</p>

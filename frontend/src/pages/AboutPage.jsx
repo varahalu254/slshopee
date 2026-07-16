@@ -25,7 +25,7 @@ const AboutPage = () => {
             <span className="italic font-serif font-medium text-[var(--color-primary)]">Smiles</span>
           </h1>
           <p className="text-gray-600 font-body text-base md:text-xl leading-relaxed max-w-xl mb-8 md:mb-12">
-            At Geethika Digital World, we don't just capture moments; we curate memories that breathe life into your personal history through the lens of craftsmanship.
+            At SL SHOPEE, we don't just capture moments; we curate memories that breathe life into your personal history through the lens of craftsmanship.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/contact" className="btn-primary px-8 py-3 md:px-10 md:py-4">Book a Shoot</Link>
@@ -54,7 +54,7 @@ const AboutPage = () => {
               {/* Floating Quote */}
               <div className="absolute -bottom-8 right-0 sm:-bottom-10 sm:-right-6 bg-white p-5 sm:p-8 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs border border-purple-50">
                 <h4 className="text-xl sm:text-2xl font-display font-bold text-[#9D4E8D] mb-1 italic">"Art is feeling."</h4>
-                <p className="text-[9px] sm:text-[10px] text-gray-400 font-body font-bold tracking-widest uppercase">— Geethika Studio</p>
+                <p className="text-[9px] sm:text-[10px] text-gray-400 font-body font-bold tracking-widest uppercase">— SL SHOPEE Studio</p>
               </div>
             </div>
 
@@ -66,7 +66,7 @@ const AboutPage = () => {
                   <span className="italic font-serif font-medium text-[var(--color-primary)]">Sentiment</span>
                 </h2>
                 <p className="text-gray-500 font-body text-base md:text-lg leading-relaxed mb-6">
-                  Founded on the belief that every person has a masterpiece hidden in their everyday life, Geethika Digital World emerged as a sanctuary for visual storytelling. We reject the clinical approach of mass-market studios.
+                  Founded on the belief that every person has a masterpiece hidden in their everyday life, SL SHOPEE emerged as a sanctuary for visual storytelling. We reject the clinical approach of mass-market studios.
                 </p>
                 <p className="text-gray-500 font-body text-base md:text-lg leading-relaxed mb-6">
                   Our philosophy is rooted in The Sentimental Curator—an approach where we act as both artist and archivist. We blend modern high-end editorial techniques with the timeless warmth of personal connection.

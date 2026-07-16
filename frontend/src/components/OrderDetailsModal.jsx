@@ -174,8 +174,8 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
     @media print{body{-webkit-print-color-adjust:exact;}}</style></head><body>
     <div class="page">
       <div class="header">
-        <div><div class="brand-name">Geethika Digital World</div><div class="brand-sub">Customised Gifts &amp; Photography</div>
-        <div class="brand-contact">🌐 geethikadigitalworld.com<br>📞 +91 94926 86421<br>📧 geethikaphotoplanet9@gmail.com<br>📍 Bhimavaram, Andhra Pradesh, India</div></div>
+        <div><div class="brand-name">SL SHOPEE</div><div class="brand-sub">Customised Gifts &amp; Photography</div>
+        <div class="brand-contact">🌐 slshopee.vercel.app<br>📞 +91 94926 86421<br>📧 geethikaphotoplanet9@gmail.com<br>📍 Bhimavaram, Andhra Pradesh, India</div></div>
         <div><div class="invoice-title">INVOICE</div><div class="invoice-num">${o.order_number}</div><div class="invoice-meta">Date: ${dateStr}</div>
         <div class="invoice-meta" style="margin-top:6px;">Payment: <span class="badge">${(o.payment_status||'').toUpperCase()}</span></div></div>
       </div>
@@ -193,7 +193,7 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
         ${parseFloat(o.discount||0)>0?`<div class="totals-row"><span>Discount</span><span>-₹${parseFloat(o.discount).toLocaleString('en-IN')}</span></div>`:''}
         <div class="totals-row grand"><span>Total</span><span>₹${parseFloat(o.total).toLocaleString('en-IN')}</span></div>
       </div>
-      <div class="footer">Thank you for shopping with Geethika Digital World! 💜 &nbsp;|&nbsp; geethikadigitalworld.com &nbsp;|&nbsp; +91 94926 86421</div>
+      <div class="footer">Thank you for shopping with SL SHOPEE! 💜 &nbsp;|&nbsp; slshopee.vercel.app &nbsp;|&nbsp; +91 94926 86421</div>
     </div>
     <script>window.onload=()=>{window.print();}</script></body></html>`;
     const win = window.open('', '_blank');

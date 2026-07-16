@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: frontend/dist/
-          server-dir: /domains/geethikadigitalworld.com/nodejs/public/
+          server-dir: /domains/slshopee.vercel.app/nodejs/public/
 
       - name: Deploy backend via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -53,7 +53,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: backend/
-          server-dir: /domains/geethikadigitalworld.com/nodejs/
+          server-dir: /domains/slshopee.vercel.app/nodejs/
           exclude: |
             **/.git*
             **/.git*/**

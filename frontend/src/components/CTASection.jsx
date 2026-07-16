@@ -28,7 +28,7 @@ const CTASection = () => {
               Create Your Personalized Gift Today!
             </h2>
             <p className="text-purple-100 font-body text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto opacity-90">
-              Craft the perfect gift with your own memories and personalized touch with Geethika Digital World.
+              Craft the perfect gift with your own memories and personalized touch with SL SHOPEE.
             </p>
             
             <button

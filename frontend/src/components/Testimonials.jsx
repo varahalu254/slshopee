@@ -13,7 +13,7 @@ const Testimonials = () => {
       name: 'Rahul Verma',
       location: 'VIJAYAWADA',
       rating: 5,
-      text: "I needed high-quality prints and a customized t-shirt fast. Geethika Digital World provided them with perfect quality and on time!"
+      text: "I needed high-quality prints and a customized t-shirt fast. SL SHOPEE provided them with perfect quality and on time!"
     },
     {
       name: 'Priya Das',

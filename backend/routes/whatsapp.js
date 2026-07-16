@@ -27,7 +27,7 @@ Order Details:
 💰 Total: ₹${total}
 📅 Estimated Delivery: ${deliveryDate}
 
-Thank you for shopping with Geethika Digital World! 💝
+Thank you for shopping with SL SHOPEE! 💝
 
 Track your order: ${process.env.FRONTEND_URL}/orders/${orderId}
 
@@ -172,7 +172,7 @@ router.post('/send-image', authenticate, isAdmin, async (req, res) => {
       customerPhone,
       'image',
       imageUrl,
-      caption || 'Check out this product from Geethika Digital World! 🎁'
+      caption || 'Check out this product from SL SHOPEE! 🎁'
     );
 
     if (result.success) {
@@ -199,7 +199,7 @@ router.post('/send-image', authenticate, isAdmin, async (req, res) => {
 router.get('/test', authenticate, isAdmin, async (req, res) => {
   try {
     const testNumber = process.env.WHATSAPP_NUMBER || '919492686421';
-    const testMessage = 'Test message from Geethika Digital World WhatsApp API. Connection is working! ✅';
+    const testMessage = 'Test message from SL SHOPEE WhatsApp API. Connection is working! ✅';
 
     const result = await sendWhatsAppMessage(testNumber, testMessage);
 

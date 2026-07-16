@@ -117,7 +117,7 @@ const PaymentPage = () => {
         key: rzpData.keyId,
         amount: rzpData.amount,
         currency: rzpData.currency,
-        name: 'Geethika Digital World',
+        name: 'SL SHOPEE',
         description: `Order #${createdOrder.order_number}`,
         image: '/logo.png',
         order_id: rzpData.razorpayOrderId,

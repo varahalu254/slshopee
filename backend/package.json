@@ -1,7 +1,7 @@
 {
-  "name": "geethika-backend",
+  "name": "sl-shopee-backend",
   "version": "1.0.0",
-  "description": "Backend API for Geethika Digital World",
+  "description": "Backend API for SL SHOPEE",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "express",
     "postgresql"
   ],
-  "author": "Geethika Digital World",
+  "author": "SL SHOPEE",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.13.4",

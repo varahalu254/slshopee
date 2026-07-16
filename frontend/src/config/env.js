@@ -13,7 +13,7 @@ export const env = {
   whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER || '919492686421',
 
   // App
-  appName: import.meta.env.VITE_APP_NAME || 'Geethika Digital World',
+  appName: import.meta.env.VITE_APP_NAME || 'SL SHOPEE',
   appUrl: import.meta.env.VITE_APP_URL || 'http://localhost:5174',
 
   // Feature Flags

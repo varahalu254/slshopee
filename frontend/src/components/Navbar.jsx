@@ -205,7 +205,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-3 flex-shrink-0 group">
             <img 
               src="/logo.png" 
-              alt="Geethika Digital World" 
+              alt="SL SHOPEE" 
               width="58"
               height="58"
               className="h-14 w-14 object-contain transition-transform duration-500 group-hover:scale-110"
@@ -215,7 +215,7 @@ const Navbar = () => {
             />
             <div className="flex items-center">
               <span className="text-[20px] font-display font-bold tracking-tight text-gray-900 leading-none whitespace-nowrap">
-                Geethika <span className="text-[var(--color-primary)]">Digital World</span>
+                SL SHOPEE <span className="text-[var(--color-primary)]">Digital World</span>
               </span>
             </div>
           </Link>

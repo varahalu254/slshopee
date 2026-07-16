@@ -77,8 +77,8 @@ export const sendOTPEmail = async (email, otp, purpose = 'verification') => {
 
   const subject =
     purpose === 'verification'
-      ? 'Verify Your Email - Geethika Digital World'
-      : 'Password Reset OTP - Geethika Digital World';
+      ? 'Verify Your Email - SL SHOPEE'
+      : 'Password Reset OTP - SL SHOPEE';
 
   const html = `
     <!DOCTYPE html>
@@ -86,7 +86,7 @@ export const sendOTPEmail = async (email, otp, purpose = 'verification') => {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Geethika Digital World</title>
+      <title>SL SHOPEE</title>
       <style>
         body {
           margin: 0;
@@ -211,7 +211,7 @@ export const sendOTPEmail = async (email, otp, purpose = 'verification') => {
         <div class="card">
           <div class="accent-bar"></div>
           <div class="header">
-            <h1>Geethika Digital World</h1>
+            <h1>SL SHOPEE</h1>
             <p class="tagline">Personalized gifts &amp; memories</p>
           </div>
           <div class="content">
@@ -234,11 +234,11 @@ export const sendOTPEmail = async (email, otp, purpose = 'verification') => {
               <li>If you did not request this, you can safely ignore this email.</li>
             </ul>
 
-            <p class="signoff">Warm regards,<br><strong>Geethika Digital World</strong></p>
+            <p class="signoff">Warm regards,<br><strong>SL SHOPEE</strong></p>
           </div>
           <div class="footer">
             <p>This message was sent automatically. Please do not reply directly to this email.</p>
-            <p>&copy; ${new Date().getFullYear()} Geethika Digital World. All rights reserved.</p>
+            <p>&copy; ${new Date().getFullYear()} SL SHOPEE. All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -248,7 +248,7 @@ export const sendOTPEmail = async (email, otp, purpose = 'verification') => {
 
   const fromAddress =
     process.env.EMAIL_FROM?.trim() ||
-    `"Geethika Digital World" <${process.env.EMAIL_USER}>`;
+    `"SL SHOPEE" <${process.env.EMAIL_USER}>`;
 
   const mailOptions = {
     from: fromAddress,
@@ -289,7 +289,7 @@ export const sendWelcomeEmail = async (email, name) => {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Welcome — Geethika Digital World</title>
+      <title>Welcome — SL SHOPEE</title>
       <style>
         body {
           margin: 0;
@@ -390,7 +390,7 @@ export const sendWelcomeEmail = async (email, name) => {
           <div class="accent-bar"></div>
           <div class="header">
             <h1>Welcome aboard</h1>
-            <p class="tagline">Geethika Digital World</p>
+            <p class="tagline">SL SHOPEE</p>
           </div>
           <div class="content">
             <h2>Hello ${name}!</h2>
@@ -403,11 +403,11 @@ export const sendWelcomeEmail = async (email, name) => {
               <li>Discover offers and new arrivals</li>
             </ul>
             <p class="highlight">Questions? Reach us through the contact options on our website anytime.</p>
-            <p class="signoff">Warm regards,<br><strong>Geethika Digital World</strong></p>
+            <p class="signoff">Warm regards,<br><strong>SL SHOPEE</strong></p>
           </div>
           <div class="footer">
             <p>This message was sent automatically when you created your account.</p>
-            <p>&copy; ${new Date().getFullYear()} Geethika Digital World. All rights reserved.</p>
+            <p>&copy; ${new Date().getFullYear()} SL SHOPEE. All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -417,12 +417,12 @@ export const sendWelcomeEmail = async (email, name) => {
 
   const fromAddress =
     process.env.EMAIL_FROM?.trim() ||
-    `"Geethika Digital World" <${process.env.EMAIL_USER}>`;
+    `"SL SHOPEE" <${process.env.EMAIL_USER}>`;
 
   const mailOptions = {
     from: fromAddress,
     to: email,
-    subject: 'Welcome to Geethika Digital World',
+    subject: 'Welcome to SL SHOPEE',
     html,
   };
 

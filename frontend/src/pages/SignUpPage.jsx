@@ -122,7 +122,7 @@ const SignUpPage = () => {
       <div className="flex-1 flex items-center justify-center p-8 md:p-20 bg-gray-50/50 overflow-y-auto">
         <div className="w-full max-w-md space-y-10 py-4">
           <div>
-            <Link to="/"><img src="/logo.png" className="h-16 w-auto mb-8" alt="Geethika Digital World" /></Link>
+            <Link to="/"><img src="/logo.png" className="h-16 w-auto mb-8" alt="SL SHOPEE" /></Link>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-2">Create Account</h1>
             <p className="text-gray-400 font-body text-sm">Join our curated community of sentimental curators.</p>
           </div>
