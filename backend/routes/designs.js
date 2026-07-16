@@ -99,7 +99,7 @@ router.post('/upload-customization', uploadCustomised.single('customizationImage
       
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          folder: 'geethika/customised',
+          folder: 'slshopee/customised',
           resource_type: 'auto',
           transformation: [
             { width: 1000, height: 1000, crop: 'limit' },

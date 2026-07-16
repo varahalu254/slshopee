@@ -124,7 +124,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h5 className="text-[10px] font-body font-bold text-gray-400 uppercase tracking-widest mb-1">Email</h5>
-                    <p className="text-sm font-body text-gray-700">hello@geethika.digital</p>
+                    <p className="text-sm font-body text-gray-700">hello@slshopee.digital</p>
                   </div>
                 </div>
               </div>

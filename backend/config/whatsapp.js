@@ -79,7 +79,7 @@ export const sendWhatsAppMedia = async (to, mediaType, mediaUrl, caption = '') =
 };
 
 export const verifyWebhook = (mode, token, challenge) => {
-  const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || 'geethika_verify_token';
+  const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || 'slshopee_verify_token';
   if (mode === 'subscribe' && token === VERIFY_TOKEN) {
     console.log('✅ Webhook verified');
     return challenge;

@@ -3,7 +3,7 @@ import { Search, Eye, Plus, Trash2, Lock } from 'lucide-react';
 import OrderDetailsModal from '../../components/OrderDetailsModal';
 import PhoneInput from '../../components/PhoneInput';
 
-const DELETE_PASSWORD = 'geethika@9492';
+const DELETE_PASSWORD = 'slshopee@9492';
 
 // Password confirmation modal
 const DeleteConfirmModal = ({ count, onConfirm, onCancel }) => {

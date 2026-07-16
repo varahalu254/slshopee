@@ -215,7 +215,7 @@ const Navbar = () => {
             />
             <div className="flex items-center">
               <span className="text-[20px] font-display font-bold tracking-tight text-gray-900 leading-none whitespace-nowrap">
-                SL SHOPEE <span className="text-[var(--color-primary)]">Digital World</span>
+                SL SHOPEE
               </span>
             </div>
           </Link>
