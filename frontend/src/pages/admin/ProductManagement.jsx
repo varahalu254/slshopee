@@ -61,7 +61,7 @@ const ProductManagement = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products`);
       const data = await response.json();
       // Ensure all products have special_offer field (default to false if missing)
       const productsWithDefaults = (data.products || []).map(product => ({
@@ -79,7 +79,7 @@ const ProductManagement = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/categories`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories`);
       const data = await response.json();
       setCategories(data.categories || []);
     } catch (error) {
@@ -203,8 +203,8 @@ const ProductManagement = () => {
 
     try {
       const url = editingProduct
-        ? `${import.meta.env.VITE_API_URL}/api/products/${editingProduct.id}`
-        : `${import.meta.env.VITE_API_URL}/api/products`;
+        ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${editingProduct.id}`
+        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products`;
 
       const formDataToSend = new FormData();
       
@@ -289,7 +289,7 @@ const ProductManagement = () => {
     console.log('Using token:', token ? token.substring(0, 20) + '...' : 'NO TOKEN');
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -91,7 +91,7 @@ const OrderManagement = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -106,7 +106,7 @@ const OrderManagement = () => {
   const updateOrderStatus = async (orderId, status, paymentStatus = null) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const OrderManagement = () => {
   const viewOrderDetails = async (orderId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${orderId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -158,7 +158,7 @@ const OrderManagement = () => {
     try {
       const token = localStorage.getItem('token');
       if (deleteModal?.type === 'single') {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${deleteModal.id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${deleteModal.id}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -169,7 +169,7 @@ const OrderManagement = () => {
           alert('Failed to delete order.');
         }
       } else if (deleteModal?.type === 'bulk') {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -465,7 +465,7 @@ const OfflineOrderModal = ({ onClose, onSuccess }) => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

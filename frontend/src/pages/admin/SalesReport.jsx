@@ -23,7 +23,7 @@ const SalesReport = () => {
         ...(endDate && { end_date: endDate })
       });
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/sales-report?${params}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/sales-report?${params}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       

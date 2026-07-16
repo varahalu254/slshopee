@@ -21,7 +21,7 @@ const ProductReviewForm = ({ productId, productName }) => {
 
     // Only check if already reviewed — we already know order is delivered
     setStatus('loading');
-    fetch(`${import.meta.env.VITE_API_URL}/api/products/${productId}/reviews`, {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${productId}/reviews`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(r => r.json())
@@ -52,7 +52,7 @@ const ProductReviewForm = ({ productId, productName }) => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${productId}/reviews`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${productId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(form),
@@ -176,7 +176,7 @@ const MyOrdersPage = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/my-orders`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/my-orders`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

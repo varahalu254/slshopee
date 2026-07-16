@@ -18,7 +18,7 @@ const ProductReviewForm = ({ productId, productName }) => {
     const token = localStorage.getItem('token');
     if (!token) { setStatus('can'); return; }
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/products/${productId}/reviews`, {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${productId}/reviews`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(r => r.json())
@@ -42,7 +42,7 @@ const ProductReviewForm = ({ productId, productName }) => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${productId}/reviews`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${productId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(form),
@@ -139,7 +139,7 @@ const OrderDetailPage = () => {
     try {
       setSubmittingAction(itemId);
       const token = localStorage.getItem('token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/designs/approve/${itemId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/approve/${itemId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -158,7 +158,7 @@ const OrderDetailPage = () => {
     try {
       setSubmittingAction(itemId);
       const token = localStorage.getItem('token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/designs/request-revision/${itemId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/request-revision/${itemId}`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -186,7 +186,7 @@ const OrderDetailPage = () => {
           const token = localStorage.getItem('token');
           const itemId = item._id || item.id;
           if (!itemId) return;
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/designs/order-item/${itemId}`, {
+          const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/order-item/${itemId}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -216,7 +216,7 @@ const OrderDetailPage = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

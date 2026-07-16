@@ -27,7 +27,7 @@ const Navbar = () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notifications`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/notifications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.status === 401) {
@@ -47,7 +47,7 @@ const Navbar = () => {
   const handleMarkAllRead = async () => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`${import.meta.env.VITE_API_URL}/api/notifications/mark-read`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/notifications/mark-read`, {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -62,7 +62,7 @@ const Navbar = () => {
     if (selectedIds.size === 0) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`${import.meta.env.VITE_API_URL}/api/notifications`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/notifications`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ ids: Array.from(selectedIds) }),
@@ -82,7 +82,7 @@ const Navbar = () => {
   const handleDeleteAll = async () => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`${import.meta.env.VITE_API_URL}/api/notifications`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/notifications`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ deleteAll: true }),

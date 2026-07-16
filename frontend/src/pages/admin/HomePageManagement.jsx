@@ -27,7 +27,7 @@ const HomePageManagement = () => {
   const fetchContent = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/homepage/admin/content`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/admin/content`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -107,8 +107,8 @@ const HomePageManagement = () => {
       }
 
       const url = isCreating
-        ? `${import.meta.env.VITE_API_URL}/api/homepage/admin/content`
-        : `${import.meta.env.VITE_API_URL}/api/homepage/admin/content/${editingItem.id}`;
+        ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/admin/content`
+        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/admin/content/${editingItem.id}`;
 
       const method = isCreating ? 'POST' : 'PUT';
 
@@ -141,7 +141,7 @@ const HomePageManagement = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/homepage/admin/content/${item.id}`,
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/admin/content/${item.id}`,
         {
           method: 'PUT',
           headers: {
@@ -165,7 +165,7 @@ const HomePageManagement = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/homepage/admin/content/${id}`,
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/admin/content/${id}`,
         {
           method: 'DELETE',
           headers: {

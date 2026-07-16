@@ -22,7 +22,7 @@ const GalleryHomeSection = () => {
   const fetchGalleryImages = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gallery?limit=5`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/gallery?limit=5`);
       if (response.ok) {
         const data = await response.json();
         setImages(data.images?.length > 0 ? data.images : fallbackImages);

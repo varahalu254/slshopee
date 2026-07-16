@@ -18,7 +18,7 @@ const TrendingSection = () => {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/products?limit=100&valentine=true`, {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products?limit=100&valentine=true`, {
       signal: controller.signal,
     })
       .then((r) => r.json())

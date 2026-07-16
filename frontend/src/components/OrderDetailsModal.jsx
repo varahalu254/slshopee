@@ -17,7 +17,7 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
           const token = localStorage.getItem('token');
           const itemId = item._id || item.id;
           if (!itemId) return;
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/designs/order-item/${itemId}`, {
+          const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/order-item/${itemId}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -45,7 +45,7 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
       setUploadingDesign(orderItemId);
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/designs/upload/${orderItemId}`,
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/upload/${orderItemId}`,
         {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
@@ -118,7 +118,7 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/orders/${updatedOrder.id || updatedOrder._id}/status`,
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${updatedOrder.id || updatedOrder._id}/status`,
         {
           method: 'PATCH',
           headers: {

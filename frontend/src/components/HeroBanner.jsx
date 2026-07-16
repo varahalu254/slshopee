@@ -9,7 +9,7 @@ const HeroBanner = () => {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/homepage/content`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/content`);
         const data = await response.json();
         if (data.success && data.content?.hero_banner?.image_url) {
           const imgUrl = data.content.hero_banner.image_url;

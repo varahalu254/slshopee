@@ -66,7 +66,7 @@ const GalleryManagement = () => {
         }
         data.append('image', formData.image);
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gallery`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/gallery`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`

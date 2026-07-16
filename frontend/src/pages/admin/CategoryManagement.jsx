@@ -23,7 +23,7 @@ const CategoryManagement = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/categories`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories`);
             const data = await response.json();
             if (data.categories) {
                 setCategories(data.categories);
@@ -70,7 +70,7 @@ const CategoryManagement = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/categories/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -113,8 +113,8 @@ const CategoryManagement = () => {
             }
 
             const url = editingItem
-                ? `${import.meta.env.VITE_API_URL}/api/categories/${editingItem.id}`
-                : `${import.meta.env.VITE_API_URL}/api/categories`;
+                ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories/${editingItem.id}`
+                : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories`;
 
             const method = editingItem ? 'PUT' : 'POST';
 

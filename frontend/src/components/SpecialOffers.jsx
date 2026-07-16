@@ -42,7 +42,7 @@ const SpecialOffers = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/homepage/content`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/homepage/content`);
         const data = await response.json();
 
         if (data.success && data.content && data.content.offers && data.content.offers.length > 0) {

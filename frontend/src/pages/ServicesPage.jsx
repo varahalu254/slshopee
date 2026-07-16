@@ -22,7 +22,7 @@ const ServicesPage = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/services`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/services`);
       const data = await response.json();
       setServices(data.services || []);
     } catch (error) {

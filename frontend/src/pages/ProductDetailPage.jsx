@@ -47,7 +47,7 @@ const ProductDetailPage = () => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}`);
       if (!response.ok) throw new Error('Product not found');
       const data = await response.json();
       setProduct(data);
@@ -61,7 +61,7 @@ const ProductDetailPage = () => {
 
   const fetchRelatedProducts = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products?limit=4`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products?limit=4`);
       if (response.ok) {
         const data = await response.json();
         setRelatedProducts(data.products.filter(p => p.id !== id));
@@ -77,7 +77,7 @@ const ProductDetailPage = () => {
       const token = localStorage.getItem('token');
 
       // Fetch reviews (public)
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}/reviews`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}/reviews`);
       if (res.ok) {
         const data = await res.json();
         setReviews(data.reviews);
@@ -97,7 +97,7 @@ const ProductDetailPage = () => {
       if (token) {
         try {
           const eligRes = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/products/${id}/reviews/can-review`,
+            `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}/reviews/can-review`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           if (eligRes.ok) {
@@ -125,8 +125,8 @@ const ProductDetailPage = () => {
       const token = localStorage.getItem('token');
       const isEdit = !!editingReview;
       const url = isEdit
-        ? `${import.meta.env.VITE_API_URL}/api/products/${id}/reviews/${editingReview._id}`
-        : `${import.meta.env.VITE_API_URL}/api/products/${id}/reviews`;
+        ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}/reviews/${editingReview._id}`
+        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}/reviews`;
 
       const res = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
@@ -152,7 +152,7 @@ const ProductDetailPage = () => {
     if (!confirm('Delete your review?')) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}/reviews/${reviewId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}/reviews/${reviewId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -180,7 +180,7 @@ const ProductDetailPage = () => {
         const formData = new FormData();
         formData.append('customizationImage', file);
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/designs/upload-customization`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/designs/upload-customization`, {
           method: 'POST',
           body: formData,
         });

@@ -17,7 +17,7 @@ const GalleryPage = () => {
   const fetchGalleryImages = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gallery`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/gallery`);
       if (response.ok) {
         const data = await response.json();
         if (data.images && data.images.length > 0) {

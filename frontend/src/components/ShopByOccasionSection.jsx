@@ -22,7 +22,7 @@ const ShopByOccasionSection = () => {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/categories`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/categories`);
       if (response.ok) {
         const data = await response.json();
         const allCats = data.categories || [];

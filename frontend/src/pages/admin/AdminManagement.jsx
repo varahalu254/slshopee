@@ -45,7 +45,7 @@ const AdminManagement = () => {
   const fetchAdmins = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/super-admin/admins`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/super-admin/admins`, {
         headers: getAuthHeaders()
       });
 
@@ -74,8 +74,8 @@ const AdminManagement = () => {
 
     try {
       const url = editingAdmin
-        ? `${import.meta.env.VITE_API_URL}/api/super-admin/admins/${editingAdmin.id}`
-        : `${import.meta.env.VITE_API_URL}/api/super-admin/admins`;
+        ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/super-admin/admins/${editingAdmin.id}`
+        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/super-admin/admins`;
 
       const dataToSend = { ...formData };
       
@@ -111,7 +111,7 @@ const AdminManagement = () => {
     if (!confirm('Are you sure you want to delete this admin?')) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/super-admin/admins/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/super-admin/admins/${id}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
