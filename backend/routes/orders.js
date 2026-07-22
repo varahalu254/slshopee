@@ -342,7 +342,7 @@ router.patch('/:id/status', authenticate, isAdmin, async (req, res) => {
           'cancelled': 'Your order has been cancelled'
         };
 
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = process.env.FRONTEND_URL || 'https://slshopee.com';
         const waMessage = `${statusEmojis[order_status] || '📦'} Order Update\n\nHi ${order.customer_name}!\n\nOrder #${order.order_number}\nStatus: ${statusMessages[order_status] || `Your order status is now ${order_status}`}\n\nView details: ${frontendUrl}/order/${order._id}\n\nQuestions? Call us at +91 9492686421`;
 
         // Send asynchronously without awaiting

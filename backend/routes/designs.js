@@ -209,7 +209,7 @@ router.post('/upload/:orderItemId', authenticate, isAdmin, upload.single('design
       }
 
       if (order.customer_phone) {
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = process.env.FRONTEND_URL || 'https://slshopee.com';
         const waMessage = `🎨 Design Ready for Review!\n\nHi ${order.customer_name},\n\nWe have created the custom design for your order #${order.order_number}.\n\nPlease review and approve it here: ${frontendUrl}/order/${order._id}\n\nQuestions? Call us at +91 9492686421`;
         sendWhatsAppMessage(order.customer_phone, waMessage).catch(err => console.error('Failed to send WA design review:', err));
       }
