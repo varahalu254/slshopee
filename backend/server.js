@@ -71,9 +71,6 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:3000',
-  'https://slshopee.vercel.app',
-  'https://www.slshopee.vercel.app',
-  'https://sl-shopee.onrender.com',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
@@ -121,8 +118,7 @@ const cleanFrontendPath = rawFrontendPath.includes('=')
 const candidatePaths = [
   cleanFrontendPath ? path.resolve(cleanFrontendPath) : null,
   path.join(__dirname, 'public'),
-  path.resolve('/home/u327292494/domains/slshopee.vercel.app/nodejs/public'),
-  path.resolve('/home/u327292494/domains/slshopee.vercel.app/public_html'),
+  path.join(__dirname, '../frontend/dist'),
 ].filter(Boolean);
 
 const frontendPath = candidatePaths.find(p => fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html')));

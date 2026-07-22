@@ -255,10 +255,10 @@ router.get('/:id', authenticate, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).lean();
     if (!order) return res.status(404).json({ error: 'Order not found' });
-    
+
     // Return order with all items included
     console.log('Returning order:', order.order_number, 'with', order.items?.length || 0, 'items');
-    res.json({ 
+    res.json({
       ...order,
       id: order._id,
       items: order.items || []
@@ -307,7 +307,7 @@ router.patch('/:id/status', authenticate, isAdmin, async (req, res) => {
       if (user) {
         let title = 'Order Update';
         let message = `Your order ${order.order_number} status has been updated to ${order_status}.`;
-        
+
         if (order_status === 'shipped') {
           title = 'Order Shipped';
           message = `Great news! Your order ${order.order_number} is on its way.`;
@@ -341,10 +341,10 @@ router.patch('/:id/status', authenticate, isAdmin, async (req, res) => {
           'delivered': 'Your order has been delivered',
           'cancelled': 'Your order has been cancelled'
         };
-        
-        const frontendUrl = process.env.FRONTEND_URL || 'https://slshopee.vercel.app';
+
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
         const waMessage = `${statusEmojis[order_status] || '📦'} Order Update\n\nHi ${order.customer_name}!\n\nOrder #${order.order_number}\nStatus: ${statusMessages[order_status] || `Your order status is now ${order_status}`}\n\nView details: ${frontendUrl}/order/${order._id}\n\nQuestions? Call us at +91 9492686421`;
-        
+
         // Send asynchronously without awaiting
         sendWhatsAppMessage(order.customer_phone, waMessage).catch(err => console.error('Failed to send WA update:', err));
       }

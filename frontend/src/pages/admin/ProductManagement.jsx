@@ -857,45 +857,105 @@ const ProductManagement = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Available Sizes
                       </label>
-                      <div className="space-y-2">
+                      <div className="space-y-3">
                         {formData.sizes.map((size, index) => (
-                          <div key={index} className="flex items-center space-x-2">
-                            <input
-                              type="text"
-                              value={size.name || (typeof size === 'string' ? size : '')}
-                              onChange={(e) => {
-                                const newSizes = [...formData.sizes];
-                                const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price } : newSizes[index];
-                                newSizes[index] = { ...currentSize, name: e.target.value };
-                                setFormData({ ...formData, sizes: newSizes });
-                              }}
-                              placeholder="Size name (e.g. Small)"
-                              className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
-                            />
-                            <input
-                              type="number"
-                              value={size.price || ''}
-                              onChange={(e) => {
-                                const newSizes = [...formData.sizes];
-                                const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price } : newSizes[index];
-                                newSizes[index] = { ...currentSize, price: parseFloat(e.target.value) || 0 };
-                                setFormData({ ...formData, sizes: newSizes });
-                              }}
-                              placeholder="Price"
-                              className="w-24 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setFormData({
-                                  ...formData,
-                                  sizes: formData.sizes.filter((_, i) => i !== index)
-                                });
-                              }}
-                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                          <div key={index} className="flex flex-col gap-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="text"
+                                value={size.name || (typeof size === 'string' ? size : '')}
+                                onChange={(e) => {
+                                  const newSizes = [...formData.sizes];
+                                  const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price, stock: 0, colors: [] } : newSizes[index];
+                                  newSizes[index] = { ...currentSize, name: e.target.value };
+                                  setFormData({ ...formData, sizes: newSizes });
+                                }}
+                                placeholder="Size name (e.g. Small)"
+                                className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
+                              />
+                              <div className="flex gap-2 w-48">
+                                <input
+                                  type="number"
+                                  value={size.price !== undefined ? size.price : ''}
+                                  onChange={(e) => {
+                                    const newSizes = [...formData.sizes];
+                                    const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price, stock: 0, colors: [] } : newSizes[index];
+                                    newSizes[index] = { ...currentSize, price: parseFloat(e.target.value) || 0 };
+                                    setFormData({ ...formData, sizes: newSizes });
+                                  }}
+                                  placeholder="Price"
+                                  className="w-1/2 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
+                                />
+                                <input
+                                  type="number"
+                                  value={size.stock !== undefined ? size.stock : ''}
+                                  onChange={(e) => {
+                                    const newSizes = [...formData.sizes];
+                                    const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price, stock: 0, colors: [] } : newSizes[index];
+                                    newSizes[index] = { ...currentSize, stock: parseInt(e.target.value, 10) || 0 };
+                                    setFormData({ ...formData, sizes: newSizes });
+                                  }}
+                                  placeholder="Stock"
+                                  className="w-1/2 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
+                                />
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setFormData({
+                                    ...formData,
+                                    sizes: formData.sizes.filter((_, i) => i !== index)
+                                  });
+                                }}
+                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+
+                            <div className="w-full">
+                              <input
+                                type="text"
+                                placeholder="Colors for this size (e.g. White, Black - Press Enter)"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    const val = e.target.value.trim();
+                                    if (val) {
+                                      const newSizes = [...formData.sizes];
+                                      const currentSize = typeof newSizes[index] === 'string' ? { name: newSizes[index], price: formData.price, stock: 0, colors: [] } : newSizes[index];
+                                      const currentColors = currentSize.colors || [];
+                                      if (!currentColors.includes(val)) {
+                                        newSizes[index] = { ...currentSize, colors: [...currentColors, val] };
+                                        setFormData({ ...formData, sizes: newSizes });
+                                      }
+                                    }
+                                    e.target.value = '';
+                                  }
+                                }}
+                                className="w-full px-3 py-1.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
+                              />
+                              {(size.colors && size.colors.length > 0) && (
+                                <div className="flex flex-wrap gap-1 mt-1.5">
+                                  {size.colors.map((c, i) => (
+                                    <span key={i} className="inline-flex items-center gap-1 bg-purple-50 text-purple-700 font-medium text-[10px] px-2 py-0.5 rounded-full border border-purple-200">
+                                      {c}
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newSizes = [...formData.sizes];
+                                          newSizes[index].colors = newSizes[index].colors.filter((_, idx) => idx !== i);
+                                          setFormData({ ...formData, sizes: newSizes });
+                                        }}
+                                        className="text-purple-400 hover:text-red-500"
+                                      >
+                                        <X className="w-2.5 h-2.5" />
+                                      </button>
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           </div>
                         ))}
                         <button
@@ -903,7 +963,7 @@ const ProductManagement = () => {
                           onClick={() => {
                             setFormData({
                               ...formData,
-                              sizes: [...formData.sizes, { name: '', price: formData.price || 0 }]
+                              sizes: [...formData.sizes, { name: '', price: formData.price || 0, stock: 0 }]
                             });
                           }}
                           className="text-sm text-valentine-red hover:text-valentine-darkRed font-medium"

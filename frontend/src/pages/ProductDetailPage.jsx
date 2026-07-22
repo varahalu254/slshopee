@@ -285,6 +285,20 @@ const ProductDetailPage = () => {
     return [];
   })();
 
+  const allActiveSizes = product.sizes?.length > 0 ? product.sizes : (product.customization_options?.sizes?.length > 0 ? product.customization_options.sizes : []);
+  const currentSelectedSize = allActiveSizes.length > 0 ? allActiveSizes[selectedSizeIndex] : null;
+  const currentStock = (currentSelectedSize && currentSelectedSize.stock !== undefined) ? currentSelectedSize.stock : product.stock_quantity;
+
+  const availableColors = (currentSelectedSize && currentSelectedSize.colors && currentSelectedSize.colors.length > 0)
+    ? currentSelectedSize.colors
+    : (product.colors || []);
+
+  useEffect(() => {
+    if (availableColors.length > 0 && (!selectedColor || !availableColors.includes(selectedColor))) {
+      setSelectedColor(availableColors[0]);
+    }
+  }, [availableColors, selectedColor]);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
@@ -438,7 +452,10 @@ const ProductDetailPage = () => {
                   {(product.sizes?.length > 0 ? product.sizes : product.customization_options.sizes).map((size, index) => (
                     <button
                       key={index}
-                      onClick={() => setSelectedSizeIndex(index)}
+                      onClick={() => {
+                        setSelectedSizeIndex(index);
+                        setQuantity(1);
+                      }}
                       className={`px-6 py-3 rounded-lg border-2 font-body font-bold transition-all ${selectedSizeIndex === index
                         ? 'border-[#0a0a0a] bg-purple-50 text-gray-400 shadow-md'
                         : 'border-gray-100 text-gray-400 hover:border-gray-900 hover:bg-gray-50'
@@ -452,11 +469,11 @@ const ProductDetailPage = () => {
             )}
 
             {/* Color Options */}
-            {product.colors && product.colors.length > 0 && (
+            {availableColors && availableColors.length > 0 && (
               <div className="mb-10 animate-fade-in">
                 <h4 className="text-xs font-body font-bold tracking-[0.2em] text-black-400 uppercase mb-4">Select Color</h4>
                 <div className="flex flex-wrap gap-4">
-                  {product.colors.map((color, index) => (
+                  {availableColors.map((color, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedColor(color)}
@@ -485,9 +502,9 @@ const ProductDetailPage = () => {
                   </button>
                   <span className="w-10 text-center font-body font-bold text-gray-900">{quantity}</span>
                   <button
-                    onClick={() => setQuantity(Math.min(product.stock_quantity, quantity + 1))}
-                    disabled={quantity >= product.stock_quantity}
-                    className={`w-10 h-10 flex items-center justify-center ${quantity >= product.stock_quantity ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-900'}`}
+                    onClick={() => setQuantity(Math.min(currentStock, quantity + 1))}
+                    disabled={quantity >= currentStock}
+                    className={`w-10 h-10 flex items-center justify-center ${quantity >= currentStock ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-900'}`}
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -496,11 +513,7 @@ const ProductDetailPage = () => {
               <div className="text-right">
                 <div className="text-3xl font-sans font-bold text-[#333333]">
                   ₹{
-                    product.sizes?.length > 0
-                      ? (product.sizes[selectedSizeIndex]?.price || product.price)
-                      : product.customization_options?.sizes?.length > 0
-                        ? (product.customization_options.sizes[selectedSizeIndex]?.price || product.price)
-                        : product.price
+                    currentSelectedSize?.price || product.price
                   }
                 </div>
               </div>
@@ -508,13 +521,13 @@ const ProductDetailPage = () => {
 
             {/* Stock Availability */}
             <div className="mb-6">
-              {product.stock_quantity === 0 ? (
+              {currentStock === 0 ? (
                 <p className="text-xm font-body font-bold text-[#ff0000]">
                   No Stock Available
                 </p>
-              ) : product.stock_quantity > 0 && product.stock_quantity < 10 ? (
+              ) : currentStock > 0 && currentStock < 10 ? (
                 <p className="text-xm font-body font-bold text-[#ff0000]">
-                  Only {product.stock_quantity} items left
+                  Only {currentStock} items left
                 </p>
               ) : null}
             </div>
@@ -523,8 +536,8 @@ const ProductDetailPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <button
                 onClick={handleAddToCart}
-                disabled={product.stock_quantity <= 0}
-                className={`py-4 rounded-xl font-body font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${product.stock_quantity > 0 ? 'bg-[#8E447E] text-white hover:bg-[#7A3B6D] active:scale-95' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+                disabled={currentStock <= 0}
+                className={`py-4 rounded-xl font-body font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${currentStock > 0 ? 'bg-[#8E447E] text-white hover:bg-[#7A3B6D] active:scale-95' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span>Add to Cart</span>
@@ -532,8 +545,8 @@ const ProductDetailPage = () => {
               <button
                 type="button"
                 onClick={handleBuyNow}
-                disabled={product.stock_quantity <= 0}
-                className={`py-4 rounded-xl font-body font-bold text-sm flex items-center justify-center transition-all shadow-lg ${product.stock_quantity > 0 ? 'bg-[#F7D060] text-gray-900 hover:bg-[#EAB308] active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                disabled={currentStock <= 0}
+                className={`py-4 rounded-xl font-body font-bold text-sm flex items-center justify-center transition-all shadow-lg ${currentStock > 0 ? 'bg-[#F7D060] text-gray-900 hover:bg-[#EAB308] active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
               >
                 <span>Buy</span>
               </button>

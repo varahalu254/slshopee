@@ -56,7 +56,7 @@ const upload = multer({
     const ext = path.extname(file.originalname).toLowerCase();
     const allowedExts = ['.jpeg', '.jpg', '.png', '.gif', '.pdf'];
     const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
-    
+
     if (allowedExts.includes(ext) && allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -75,7 +75,7 @@ const uploadCustomised = multer({
     const ext = path.extname(file.originalname).toLowerCase();
     const allowedExts = ['.jpeg', '.jpg', '.png', '.gif'];
     const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-    
+
     if (allowedExts.includes(ext) && allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -96,7 +96,7 @@ router.post('/upload-customization', uploadCustomised.single('customizationImage
     // Upload to Cloudinary using Readable stream
     const result = await new Promise((resolve, reject) => {
       const stream = Readable.from(req.file.buffer);
-      
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: 'slshopee/customised',
@@ -128,17 +128,17 @@ router.post('/upload-customization', uploadCustomised.single('customizationImage
       stream.pipe(uploadStream);
     });
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       imageUrl: result.secure_url,
       cloudinaryPublicId: result.public_id,
-      message: 'Customization image uploaded to Cloudinary successfully' 
+      message: 'Customization image uploaded to Cloudinary successfully'
     });
   } catch (error) {
     console.error('Error uploading customization image to Cloudinary:', error);
-    res.status(500).json({ 
-      error: 'Failed to upload customization image', 
-      details: error.message || 'Unknown error' 
+    res.status(500).json({
+      error: 'Failed to upload customization image',
+      details: error.message || 'Unknown error'
     });
   }
 });
@@ -209,7 +209,7 @@ router.post('/upload/:orderItemId', authenticate, isAdmin, upload.single('design
       }
 
       if (order.customer_phone) {
-        const frontendUrl = process.env.FRONTEND_URL || 'https://slshopee.vercel.app';
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
         const waMessage = `🎨 Design Ready for Review!\n\nHi ${order.customer_name},\n\nWe have created the custom design for your order #${order.order_number}.\n\nPlease review and approve it here: ${frontendUrl}/order/${order._id}\n\nQuestions? Call us at +91 9492686421`;
         sendWhatsAppMessage(order.customer_phone, waMessage).catch(err => console.error('Failed to send WA design review:', err));
       }
