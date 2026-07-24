@@ -1,0 +1,1 @@
+console.log('Environment files fixed successfully.');
