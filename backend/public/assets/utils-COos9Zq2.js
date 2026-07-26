@@ -1,1 +1,0 @@
-const i={apiUrl:"http://localhost:5000"};function l(t){const n="/images/image.png";if(!t||typeof t!="string")return n;if(t.startsWith("http"))return t;const e=i.apiUrl,s=e.endsWith("/")?e.slice(0,-1):e,r=t.startsWith("/")?t:`/${t}`;return`${s}${r}`}export{l as f};

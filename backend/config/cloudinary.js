@@ -27,7 +27,11 @@ export const uploadToCloudinary = async (file, folder = 'products') => {
     };
   } catch (error) {
     console.error('Cloudinary upload error:', error);
-    throw new Error(`Cloudinary Error: ${error.message || 'Unknown upload failure'}`);
+    let errorMsg = error.message;
+    if (!errorMsg) {
+      try { errorMsg = JSON.stringify(error); } catch (e) { errorMsg = 'Parse error'; }
+    }
+    throw new Error(`Cloudinary Error: ${errorMsg}`);
   }
 };
 

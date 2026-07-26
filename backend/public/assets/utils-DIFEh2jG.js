@@ -1,0 +1,1 @@
+const i={apiUrl:"https://slshopee.com"};function c(e){const t="/images/image.png";if(!e||typeof e!="string")return t;if(e.startsWith("http"))return e;const s=i.apiUrl,n=s.endsWith("/")?s.slice(0,-1):s,r=e.startsWith("/")?e:`/${e}`;return`${n}${r}`}export{c as f};
