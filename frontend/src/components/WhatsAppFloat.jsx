@@ -6,13 +6,14 @@ const WhatsAppFloat = () => {
   const phoneNumber = import.meta.env.VITE_BUSINESS_PHONE || '919876543210';
   const message = 'Hi! I want to book a product.';
 
+
   // Don't render on admin pages
   if (location.pathname.startsWith('/admin')) {
     return null;
   }
 
   const handleClick = () => {
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/919491766725?text=Hii i Want Assistance`;
     window.open(url, '_blank');
   };
 
