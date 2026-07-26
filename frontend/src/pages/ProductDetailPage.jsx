@@ -455,7 +455,7 @@ const ProductDetailPage = () => {
                         setSelectedSizeIndex(index);
                         setQuantity(1);
                       }}
-                      className={`px-6 py-3 rounded-lg border-2 font-body font-bold transition-all ${selectedSizeIndex === index
+                      className={`px-6 py-3 rounded- border-2 font-body font-bold transition-all ${selectedSizeIndex === index
                         ? 'border-[#0a0a0a] bg-purple-50 text-gray-400 shadow-md'
                         : 'border-gray-100 text-gray-400 hover:border-gray-900 hover:bg-gray-50'
                         }`}

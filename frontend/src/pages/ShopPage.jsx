@@ -216,7 +216,7 @@ const ShopPage = () => {
           {loading ? (
             <div className="flex flex-col items-center justify-center py-40">
               <div className="w-16 h-16 border-4 border-gray-100 border-t-[var(--color-primary)] rounded-full animate-spin mb-4" />
-              <p className="text-gray-400 font-body animate-pulse">Gathering gifts...</p>
+              <p className="text-gray-400 font-body animate-pulse">Gathering Products...</p>
             </div>
           ) : displayedProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">

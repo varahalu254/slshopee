@@ -99,7 +99,7 @@ router.post('/', authenticate, isAdmin, uploadProductImages,
       if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
       const {
-        name, brand, slug, description, category_id, price,
+        name, brand, slug, description, category_id, price, regular_price,
         discount = 0, customizable = false, customization_options,
         valentine_special = false, special_offer = false, stock_quantity = 0,
         material, sizes, colors, features
@@ -133,6 +133,7 @@ router.post('/', authenticate, isAdmin, uploadProductImages,
         description,
         category_id: category_id || null,
         price,
+        regular_price: regular_price ? Number(regular_price) : null,
         discount,
         image_url,
         image_public_id,
@@ -251,7 +252,7 @@ router.put('/:id', authenticate, isAdmin, uploadProductImages, async (req, res) 
     };
 
     const {
-      name, brand, description, category_id, price, discount,
+      name, brand, description, category_id, price, regular_price, discount,
       customizable, customization_options, valentine_special,
       special_offer, stock_quantity, is_active, material, sizes, colors, features
     } = req.body;
@@ -292,6 +293,7 @@ router.put('/:id', authenticate, isAdmin, uploadProductImages, async (req, res) 
       ...(description !== undefined && { description }),
       ...(category_id && { category_id }),
       ...(toNumber(price) !== null && { price: toNumber(price) }),
+      ...(regular_price !== undefined && { regular_price: toNumber(regular_price) }),
       ...(toNumber(discount) !== null && { discount: toNumber(discount) }),
       image_url,
       image_public_id,
@@ -307,6 +309,9 @@ router.put('/:id', authenticate, isAdmin, uploadProductImages, async (req, res) 
       ...(toNumber(stock_quantity) !== null && { stock_quantity: toNumber(stock_quantity) }),
       ...(is_active !== undefined && is_active !== '' && { is_active: toBoolean(is_active, existing.is_active) }),
     };
+
+    console.log('PUT /products/:id received req.body.regular_price:', req.body.regular_price);
+    console.log('Updates object being saved:', JSON.stringify(updates));
 
     const product = await Product.findByIdAndUpdate(id, updates, { new: true });
     invalidateCache((key) => key.startsWith('/api/products'));

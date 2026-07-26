@@ -132,7 +132,7 @@ const ProductCard = ({ product, showWishlist = false }) => {
                 ₹{product.regular_price}
               </span>
             )}
-            <span className="font-sans font-bold text-lg text-[var(--color-primary)] whitespace-nowrap leading-none">
+            <span className="font-sans font-bold text-base text-[var(--color-primary)] whitespace-nowrap leading-none">
               ₹{product.price}
             </span>
           </div>
