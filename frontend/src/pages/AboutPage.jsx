@@ -10,6 +10,7 @@ const AboutPage = () => {
   });
   const [branches, setBranches] = useState([]);
   const [loadingBranches, setLoadingBranches] = useState(true);
+  const [submitStatus, setSubmitStatus] = useState({ loading: false, success: false, error: null });
 
   useEffect(() => {
     const fetchBranches = async () => {
@@ -28,18 +29,37 @@ const AboutPage = () => {
     fetchBranches();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const message = `New Inquiry from Contact Form!\n\nName: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\nMessage: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    setSubmitStatus({ loading: true, success: false, error: null });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to submit query');
+      }
+
+      setSubmitStatus({ loading: false, success: true, error: null });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => {
+        setSubmitStatus(prev => ({ ...prev, success: false }));
+      }, 5000);
+    } catch (err) {
+      setSubmitStatus({ loading: false, success: false, error: 'Failed to send message. Please try again.' });
+    }
   };
 
   return (
     <div className="min-h-screen bg-white">
 
       {/* Branches Section */}
-      <div className="py-12 md:py-20 bg-gray-50/50">
+      <div className="py-4 bg-gray-50/50">
         <div className="container-custom">
           <div className="text-center mb-12 md:mb-16">
             <span className="text-[10px] font-body font-bold text-[var(--color-primary)] uppercase tracking-widest mb-4 block">Our Presence</span>
@@ -106,7 +126,7 @@ const AboutPage = () => {
       </div>
 
       {/* CTA / Contact Section */}
-      <div id="contact-section" className="py-12 md:py-16">
+      <div id="contact-section" className="py-4">
         <div className="container-custom">
           {/* Header */}
           <div className="mb-12">
@@ -124,6 +144,16 @@ const AboutPage = () => {
             <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-purple-100/50 border border-purple-50/50">
               <h3 className="text-2xl font-display font-bold text-gray-900 mb-10">Send a message</h3>
               <form onSubmit={handleSubmit} className="space-y-8">
+                {submitStatus.success && (
+                  <div className="bg-green-50 text-green-700 p-4 rounded-2xl text-sm font-body font-medium">
+                    Thank you! Your message has been sent successfully. We will get back to you soon.
+                  </div>
+                )}
+                {submitStatus.error && (
+                  <div className="bg-red-50 text-red-700 p-4 rounded-2xl text-sm font-body font-medium">
+                    {submitStatus.error}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="text-[10px] font-body font-bold text-gray-400 uppercase tracking-widest ml-4">Your Name</label>
@@ -171,9 +201,10 @@ const AboutPage = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 py-4 px-10 bg-[#8E447E] text-white rounded-2xl font-body font-bold text-sm hover:bg-[#7A3B6D] transition-all shadow-lg active:scale-95"
+                  disabled={submitStatus.loading}
+                  className={`inline-flex items-center gap-3 py-4 px-10 bg-[#8E447E] text-white rounded-2xl font-body font-bold text-sm hover:bg-[#7A3B6D] transition-all shadow-lg active:scale-95 ${submitStatus.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <span>Send Inquiry</span>
+                  <span>{submitStatus.loading ? 'Sending...' : 'Send Inquiry'}</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>
@@ -191,13 +222,16 @@ const AboutPage = () => {
                     <div>
                       <h5 className="text-[10px] font-body font-bold text-gray-400 uppercase tracking-widest mb-1">Our Location</h5>
                       <div className="text-sm font-body text-gray-700 leading-relaxed">
-                        <ol>
-                          <li>1. Achampeta</li>
-                          <li>2. Peddapuram</li>
-                          <li>3. Pithapuram</li>
-                          <li>4. Gollaprolu</li>
-                          <li>5. Kathipudi</li>
-                        </ol><br />Andhra Pradesh 534204
+                        <p>Main Branch </p>
+                        <p>Beside RTC Complex, KATHIPUDI, Sankhavaram mandalam </p>
+                        <p>Kakinada District. Pin Code. 533444</p><br />
+                        <pre>Other Branches:</pre>
+                        <p>Achampeta</p>
+                        <p>Peddapuram</p>
+                        <p>Pithapuram</p>
+                        <p>Gollaprolu</p>
+
+
                       </div>
                     </div>
                   </div>
@@ -207,7 +241,8 @@ const AboutPage = () => {
                     </div>
                     <div>
                       <h5 className="text-[10px] font-body font-bold text-gray-400 uppercase tracking-widest mb-1">Phone Number</h5>
-                      <p className="text-sm font-body text-gray-700 leading-relaxed">+91 98765 43210</p>
+                      <a href="tel:08868294988" className="text-sm font-body text-gray-700 leading-relaxed block hover:text-[var(--color-primary)] transition-colors">08868-294988</a>
+                      <a href="tel:+919491766725" className="text-sm font-body text-gray-700 leading-relaxed block hover:text-[var(--color-primary)] transition-colors">+91 94917 66725</a>
                     </div>
                   </div>
                   <div className="flex gap-6">
@@ -216,7 +251,7 @@ const AboutPage = () => {
                     </div>
                     <div>
                       <h5 className="text-[10px] font-body font-bold text-gray-400 uppercase tracking-widest mb-1">Email</h5>
-                      <p className="text-sm font-body text-gray-700">contact@slshopee.digital</p>
+                      <a href="mailto:contact@slshopee" className="text-sm font-body text-gray-700 block hover:text-[var(--color-primary)] transition-colors">contact@slshopee</a>
                     </div>
                   </div>
                 </div>

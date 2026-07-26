@@ -29,7 +29,8 @@ const AdminLayout = ({ children }) => {
     { path: '/view-website', icon: Globe, label: 'View Website' },
     { path: '/admin/campaigns', icon: MessageSquare, label: 'Campaigns' },
     { path: '/admin/send-notifications', icon: Bell, label: 'Send Notifications' },
-    { path: '/admin/branches', icon: Users, label: 'Branches' }
+    { path: '/admin/branches', icon: Users, label: 'Branches' },
+    { path: '/admin/queries', icon: MessageSquare, label: 'Queries' }
   ];
 
   // Add super admin only menu items

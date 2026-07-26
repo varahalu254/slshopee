@@ -41,6 +41,7 @@ const BrandManagement = lazy(() => import('./pages/admin/BrandManagement'));
 const SendNotifications = lazy(() => import('./pages/admin/SendNotifications'));
 const BranchManagement = lazy(() => import('./pages/admin/BranchManagement'));
 const DealsManagement = lazy(() => import('./pages/admin/DealsManagement'));
+const QueriesManagement = lazy(() => import('./pages/admin/QueriesManagement'));
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -87,6 +88,7 @@ function App() {
                         <Route path="send-notifications" element={<SendNotifications />} />
                         <Route path="branches" element={<BranchManagement />} />
                         <Route path="deals" element={<DealsManagement />} />
+                        <Route path="queries" element={<QueriesManagement />} />
                         <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
                       </Routes></Suspense>
                     </PageTransition>
