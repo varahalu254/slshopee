@@ -261,6 +261,28 @@ const ProductDetailPage = () => {
     navigate('/checkout', { state: { buyNowItem: cartItem } });
   };
 
+  const images = (() => {
+    if (product?.images && product.images.length > 0) {
+      return product.images.map(img => img.url).filter(Boolean);
+    }
+    if (product?.image_url) return [product.image_url];
+    return [];
+  })();
+
+  const allActiveSizes = product?.sizes?.length > 0 ? product.sizes : (product?.customization_options?.sizes?.length > 0 ? product.customization_options.sizes : []);
+  const currentSelectedSize = allActiveSizes.length > 0 ? allActiveSizes[selectedSizeIndex] : null;
+  const currentStock = (currentSelectedSize && currentSelectedSize.stock !== undefined) ? currentSelectedSize.stock : (product?.stock_quantity || 0);
+
+  const availableColors = (currentSelectedSize && currentSelectedSize.colors && currentSelectedSize.colors.length > 0)
+    ? currentSelectedSize.colors
+    : (product?.colors || []);
+
+  useEffect(() => {
+    if (availableColors.length > 0 && (!selectedColor || !availableColors.includes(selectedColor))) {
+      setSelectedColor(availableColors[0]);
+    }
+  }, [availableColors, selectedColor]);
+
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-12 h-12 border-4 border-gray-100 border-t-[var(--color-primary)] rounded-full animate-spin"></div>
@@ -275,29 +297,6 @@ const ProductDetailPage = () => {
       </div>
     </div>
   );
-
-  // Build the images array from real product data
-  const images = (() => {
-    if (product.images && product.images.length > 0) {
-      return product.images.map(img => img.url).filter(Boolean);
-    }
-    if (product.image_url) return [product.image_url];
-    return [];
-  })();
-
-  const allActiveSizes = product.sizes?.length > 0 ? product.sizes : (product.customization_options?.sizes?.length > 0 ? product.customization_options.sizes : []);
-  const currentSelectedSize = allActiveSizes.length > 0 ? allActiveSizes[selectedSizeIndex] : null;
-  const currentStock = (currentSelectedSize && currentSelectedSize.stock !== undefined) ? currentSelectedSize.stock : product.stock_quantity;
-
-  const availableColors = (currentSelectedSize && currentSelectedSize.colors && currentSelectedSize.colors.length > 0)
-    ? currentSelectedSize.colors
-    : (product.colors || []);
-
-  useEffect(() => {
-    if (availableColors.length > 0 && (!selectedColor || !availableColors.includes(selectedColor))) {
-      setSelectedColor(availableColors[0]);
-    }
-  }, [availableColors, selectedColor]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -510,11 +509,14 @@ const ProductDetailPage = () => {
                   </button>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-sans font-bold text-[#333333]">
-                  ₹{
-                    currentSelectedSize?.price || product.price
-                  }
+              <div className="text-right flex flex-col items-end justify-center">
+                {product.regular_price && product.regular_price > (currentSelectedSize?.price || product.price) && (
+                  <div className="text-lg text-gray-400 line-through font-normal mb-1">
+                    ₹{product.regular_price}
+                  </div>
+                )}
+                <div className="text-3xl font-sans font-bold text-[#333333] leading-none">
+                  ₹{currentSelectedSize?.price || product.price}
                 </div>
               </div>
             </div>

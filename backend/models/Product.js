@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema({
   slug: { type: String, unique: true, lowercase: true },
   description: { type: String, default: null },
   category_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', default: null },
+  regular_price: { type: Number, default: null, min: 0 },
   price: { type: Number, required: true, min: 0 },
   discount: { type: Number, default: 0, min: 0 },
   image_url: { type: String, default: null },

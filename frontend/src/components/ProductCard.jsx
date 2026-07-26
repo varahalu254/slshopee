@@ -126,9 +126,16 @@ const ProductCard = ({ product, showWishlist = false }) => {
           <h3 className="font-display font-bold text-lg text-gray-900 group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
             {product.name}
           </h3>
-          <span className="font-sans font-bold text-lg text-[var(--color-primary)] whitespace-nowrap">
-            ₹{product.price}
-          </span>
+          <div className="flex flex-col items-end">
+            {product.regular_price && product.regular_price > product.price && (
+              <span className="font-sans text-[10px] text-gray-400 line-through whitespace-nowrap mb-0.5 leading-none">
+                ₹{product.regular_price}
+              </span>
+            )}
+            <span className="font-sans font-bold text-lg text-[var(--color-primary)] whitespace-nowrap leading-none">
+              ₹{product.price}
+            </span>
+          </div>
         </div>
 
         {/* Rating */}

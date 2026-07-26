@@ -19,6 +19,7 @@ const ProductManagement = () => {
     brand: '',
     description: '',
     category_id: '',
+    regular_price: '',
     price: '',
     discount: 0,
     stock_quantity: 0,
@@ -357,6 +358,7 @@ const ProductManagement = () => {
       brand: product.brand || '',
       description: product.description || '',
       category_id: pCatId || '',
+      regular_price: product.regular_price || '',
       price: product.price,
       discount: product.discount || 0,
       stock_quantity: product.stock_quantity || 0,
@@ -411,6 +413,7 @@ const ProductManagement = () => {
       brand: '',
       description: '',
       category_id: '',
+      regular_price: '',
       price: '',
       discount: 0,
       stock_quantity: 0,
@@ -667,7 +670,7 @@ const ProductManagement = () => {
         {/* Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900">
@@ -1069,7 +1072,22 @@ const ProductManagement = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Price (₹)</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Regular Price (₹)</label>
+                      <input
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={formData.regular_price}
+                        placeholder="Original Price"
+                        onChange={(e) => setFormData({ ...formData, regular_price: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Offer Price (₹)</label>
                       <input
                         type="number"
                         required
