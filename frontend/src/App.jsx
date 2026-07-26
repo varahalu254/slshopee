@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -7,40 +7,40 @@ import WhatsAppFloat from './components/WhatsAppFloat';
 import PageTransition from './components/PageTransition';
 import AdminLayout from './components/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
-import HomePage from './pages/HomePage';
-import ShopPage from './pages/ShopPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import ServicesPage from './pages/ServicesPage';
-import CartPage from './pages/CartPage';
-import WishlistPage from './pages/WishlistPage';
-import CheckoutPage from './pages/CheckoutPage';
-import PaymentPage from './pages/PaymentPage';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import ResetPasswordPage from './pages/ResetPasswordPage';
-import MyOrdersPage from './pages/MyOrdersPage';
-import OrderDetailPage from './pages/OrderDetailPage';
-import ProfilePage from './pages/ProfilePage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsConditionsPage from './pages/TermsConditionsPage';
-import RefundPolicyPage from './pages/RefundPolicyPage';
-import AboutPage from './pages/AboutPage';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import ProductManagement from './pages/admin/ProductManagement';
-import OrderManagement from './pages/admin/OrderManagement';
-import CustomerDatabase from './pages/admin/CustomerDatabase';
-import SalesReport from './pages/admin/SalesReport';
-import AdminManagement from './pages/admin/AdminManagement';
-import AuditLog from './pages/admin/AuditLog';
-import CampaignManagement from './pages/admin/CampaignManagement';
-import WhatsAppMessaging from './pages/admin/WhatsAppMessaging';
-import Analytics from './pages/admin/Analytics';
-import CategoryManagement from './pages/admin/CategoryManagement';
-import BrandManagement from './pages/admin/BrandManagement';
-import SendNotifications from './pages/admin/SendNotifications';
-import BranchManagement from './pages/admin/BranchManagement';
-import DealsManagement from './pages/admin/DealsManagement';
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ShopPage = lazy(() => import('./pages/ShopPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const CartPage = lazy(() => import('./pages/CartPage'));
+const WishlistPage = lazy(() => import('./pages/WishlistPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const PaymentPage = lazy(() => import('./pages/PaymentPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+const MyOrdersPage = lazy(() => import('./pages/MyOrdersPage'));
+const OrderDetailPage = lazy(() => import('./pages/OrderDetailPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsConditionsPage = lazy(() => import('./pages/TermsConditionsPage'));
+const RefundPolicyPage = lazy(() => import('./pages/RefundPolicyPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const ProductManagement = lazy(() => import('./pages/admin/ProductManagement'));
+const OrderManagement = lazy(() => import('./pages/admin/OrderManagement'));
+const CustomerDatabase = lazy(() => import('./pages/admin/CustomerDatabase'));
+const SalesReport = lazy(() => import('./pages/admin/SalesReport'));
+const AdminManagement = lazy(() => import('./pages/admin/AdminManagement'));
+const AuditLog = lazy(() => import('./pages/admin/AuditLog'));
+const CampaignManagement = lazy(() => import('./pages/admin/CampaignManagement'));
+const WhatsAppMessaging = lazy(() => import('./pages/admin/WhatsAppMessaging'));
+const Analytics = lazy(() => import('./pages/admin/Analytics'));
+const CategoryManagement = lazy(() => import('./pages/admin/CategoryManagement'));
+const BrandManagement = lazy(() => import('./pages/admin/BrandManagement'));
+const SendNotifications = lazy(() => import('./pages/admin/SendNotifications'));
+const BranchManagement = lazy(() => import('./pages/admin/BranchManagement'));
+const DealsManagement = lazy(() => import('./pages/admin/DealsManagement'));
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -62,7 +62,7 @@ function App() {
       <CartProvider>
         <WishlistProvider>
           <Router>
-            <Routes>
+            <Suspense fallback={<div className="flex h-screen items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div></div>}><Routes>
               {/* Admin Login — redirects to main login */}
               <Route path="/admin/login" element={<Navigate to="/login" replace />} />
 
@@ -71,7 +71,7 @@ function App() {
                 <ProtectedRoute requireAdmin={true}>
                   <AdminLayout>
                     <PageTransition>
-                      <Routes>
+                      <Suspense fallback={<div className="flex h-screen items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div></div>}><Routes>
                         <Route path="dashboard" element={<AdminDashboard />} />
                         <Route path="products" element={<ProductManagement />} />
                         <Route path="orders" element={<OrderManagement />} />
@@ -88,7 +88,7 @@ function App() {
                         <Route path="branches" element={<BranchManagement />} />
                         <Route path="deals" element={<DealsManagement />} />
                         <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
-                      </Routes>
+                      </Routes></Suspense>
                     </PageTransition>
                   </AdminLayout>
                 </ProtectedRoute>
@@ -100,7 +100,7 @@ function App() {
                   <Navbar />
                   <main className="grow">
                     <PageTransition>
-                      <Routes>
+                      <Suspense fallback={<div className="flex h-screen items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div></div>}><Routes>
                         <Route path="/" element={<AdminRedirect />} />
                         <Route path="/shop" element={<ShopPage />} />
                         <Route path="/shop/:category" element={<ShopPage />} />
@@ -123,14 +123,14 @@ function App() {
                         <Route path="/terms-conditions" element={<TermsConditionsPage />} />
                         <Route path="/refund-policy" element={<RefundPolicyPage />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
-                      </Routes>
+                      </Routes></Suspense>
                     </PageTransition>
                   </main>
                   <Footer />
                   <WhatsAppFloat />
                 </div>
               } />
-            </Routes>
+            </Routes></Suspense>
           </Router>
         </WishlistProvider>
       </CartProvider>

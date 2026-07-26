@@ -127,7 +127,15 @@ const frontendPath = candidatePaths.find(p => fs.existsSync(p) && fs.existsSync(
 
 if (frontendPath) {
   console.log(`[frontend] Serving static files from: ${frontendPath}`);
-  app.use(express.static(frontendPath));
+  app.use(express.static(frontendPath, {
+    setHeaders: (res, path) => {
+      if (path.includes('/assets/')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      } else {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+    }
+  }));
 } else {
   console.warn(`[frontend] No static files found in any candidate path:`, candidatePaths);
 }
