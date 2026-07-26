@@ -67,31 +67,40 @@ const ShopByOccasionSection = () => {
 
         {/* Circular Category Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-          {categories.map((category, index) => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryClick(category.slug || category.id)}
-              className="group flex flex-col items-center gap-4 transition-all duration-500 hover:-translate-y-2 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Image Container */}
-              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl overflow-hidden border-4 border-gray-400 shadow-lg shadow-gray-200 transition-all duration-500 group-hover:shadow-[var(--color-primary-light)] group-hover:border-[var(--color-primary-light)]">
-                <img
-                  src={
-                    category.image_url
-                      ? (category.image_url.startsWith('http') ? category.image_url : fullUrl(category.image_url))
-                      : (category.image || `https://via.placeholder.com/200`)
-                  }
-                  alt={category.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
-                />
+          {loading ? (
+            [...Array(5)].map((_, index) => (
+              <div key={index} className="flex flex-col items-center gap-4 animate-pulse">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl bg-gray-200"></div>
+                <div className="w-20 h-4 bg-gray-200 rounded"></div>
               </div>
-              {/* Category Name */}
-              <p className="font-body text-sm font-semibold text-gray-700 transition-colors group-hover:text-[var(--color-primary)]">
-                {category.name}
-              </p>
-            </button>
-          ))}
+            ))
+          ) : (
+            categories.map((category, index) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryClick(category.slug || category.id)}
+                className="group flex flex-col items-center gap-4 transition-all duration-500 hover:-translate-y-2 animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Image Container */}
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl overflow-hidden border-4 border-gray-400 shadow-lg shadow-gray-200 transition-all duration-500 group-hover:shadow-[var(--color-primary-light)] group-hover:border-[var(--color-primary-light)]">
+                  <img
+                    src={
+                      category.image_url
+                        ? (category.image_url.startsWith('http') ? category.image_url : fullUrl(category.image_url))
+                        : (category.image || `https://via.placeholder.com/200`)
+                    }
+                    alt={category.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                  />
+                </div>
+                {/* Category Name */}
+                <p className="font-body text-sm font-semibold text-gray-700 transition-colors group-hover:text-[var(--color-primary)]">
+                  {category.name}
+                </p>
+              </button>
+            ))
+          )}
         </div>
       </div>
     </section>

@@ -39,29 +39,21 @@ const DealsSection = () => {
         fetchDeal();
     }, []);
 
-    if (loading) {
-        return (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex justify-center items-center">
-                <div className="animate-pulse bg-gray-200 h-10 w-48 rounded"></div>
-            </div>
-        );
-    }
-
-    if (!deal || !deal.products || deal.products.length === 0) {
+    if (!loading && (!deal || !deal.products || deal.products.length === 0)) {
         return null;
     }
 
-    const bgStyle = deal.bgImage_url
+    const bgStyle = deal?.bgImage_url
         ? { backgroundImage: `url(${deal.bgImage_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }
         : {};
 
-    const overlayClass = deal.bgImage_url ? "absolute inset-0 bg-white/20 backdrop-blur-xs" : "";
+    const overlayClass = deal?.bgImage_url ? "absolute inset-0 bg-white/20 backdrop-blur-xs" : "";
 
     return (
-        <div className={`py-16 md:py-24 relative overflow-hidden ${!deal.bgImage_url ? 'bg-gradient-to-br from-amber-50 to-orange-50' : ''}`} style={bgStyle}>
-            {deal.bgImage_url && <div className={overlayClass}></div>}
+        <div className={`py-16 md:py-24 relative overflow-hidden ${!deal?.bgImage_url ? 'bg-gradient-to-br from-amber-50 to-orange-50' : ''}`} style={bgStyle}>
+            {deal?.bgImage_url && <div className={overlayClass}></div>}
             {/* Decorative background elements when no custom image */}
-            {!deal.bgImage_url && (
+            {!deal?.bgImage_url && (
                 <>
                     <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
                     <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-200/40 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
@@ -72,7 +64,7 @@ const DealsSection = () => {
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            {deal.icon_url ? (
+                            {deal?.icon_url ? (
                                 <span className="bg-amber-100 p-3 rounded-xl flex items-center justify-center">
                                     <img src={deal.icon_url} alt="Deals Icon" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
                                 </span>
@@ -82,10 +74,10 @@ const DealsSection = () => {
                                 </span>
                             )}
                             <h2 className="font-display font-black text-3xl md:text-4xl text-gray-900 tracking-tight">
-                                {deal.name || 'Special Offers'}
+                                {deal?.name || 'Special Offers'}
                             </h2>
                         </div>
-                        {deal.offerPercentage > 0 && (
+                        {deal?.offerPercentage > 0 && (
                             <p className="font-body text-gray-600 text-lg md:text-xl mt-2 flex items-center gap-2">
                                 Get up to <span className="font-bold text-green-600 text-2xl">{deal.offerPercentage}% Off</span> on selected items
                             </p>
@@ -114,7 +106,12 @@ const DealsSection = () => {
                             __html: `
                             .custom-scrollbar-hide::-webkit-scrollbar { display: none; }
                         `}} />
-                        {deal.products.map((product, index) => (
+                        {loading && (
+                            [...Array(4)].map((_, i) => (
+                                <div key={i} className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[240px] snap-center sm:snap-start h-80 bg-gray-100 animate-pulse rounded-2xl"></div>
+                            ))
+                        )}
+                        {!loading && deal?.products?.map((product, index) => (
                             <div
                                 key={product.id || index}
                                 className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[240px] snap-center sm:snap-start"
