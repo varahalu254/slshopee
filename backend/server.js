@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 
 // Load env first
-dotenv.config();
+dotenv.config({ path: path.join(path.dirname(fileURLToPath(import.meta.url)), '../.env') });
 
 // Import MongoDB connection
 import connectDB from './config/database.js';
