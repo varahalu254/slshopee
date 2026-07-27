@@ -211,7 +211,7 @@ const Navbar = () => {
               }}
             />
             <div className="flex items-center">
-              <span className="text-[20px] font-display font-bold tracking-tight text-gray-900 leading-none whitespace-nowrap">
+              <span className="text-[40px] font-display font-bold tracking-tight text-gray-900 leading-none whitespace-nowrap">
                 SL SHOPEE
               </span>
             </div>

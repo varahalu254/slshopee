@@ -25,7 +25,7 @@ const HeroBanner = () => {
           <img
             src={bgImage}
             alt="Hero Features"
-            className="w-full h-[90%] -mr-12 translate-x-4 object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
+            className="w-full h-[90%] -mr-24 translate-x-4 object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
           />
         </div>
 
