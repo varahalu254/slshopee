@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://slshopee.com/sitemap.xml
