@@ -4,6 +4,7 @@ import { ShoppingCart, Upload, Star, ChevronRight, Minus, Plus, MessageSquare, T
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import ProductCard from '../components/ProductCard';
+import { Helmet } from 'react-helmet-async';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -300,17 +301,54 @@ const ProductDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* SEO Dynamic Metadata */}
+      <Helmet>
+        <title>{product.name} | SL Shopee</title>
+        <meta name="description" content={product.description && product.description.length > 10 ? product.description.substring(0, 160) : `Buy ${product.name} at the best price from SL Shopee. Fast delivery and secure shopping.`} />
+        <link rel="canonical" href={`https://slshopee.com/product/${product.id}`} />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description && product.description.length > 10 ? product.description.substring(0, 160) : `Buy ${product.name} at the best price from SL Shopee.`} />
+        <meta property="og:url" content={`https://slshopee.com/product/${product.id}`} />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content={images.length > 0 ? images[0] : 'https://slshopee.com/logo.png'} />
+        {/* Product Schema (JSON-LD) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "image": images.length > 0 ? images[0] : "https://slshopee.com/logo.png",
+            "description": product.description || `Buy ${product.name}`,
+            "brand": {
+              "@type": "Brand",
+              "name": product.brand || "SL Shopee"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": currentSelectedSize?.price || product.price,
+              "priceCurrency": "INR",
+              "availability": currentStock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+            },
+            "aggregateRating": reviewStats.total > 0 ? {
+              "@type": "AggregateRating",
+              "ratingValue": reviewStats.avg,
+              "reviewCount": reviewStats.total
+            } : undefined
+          })}
+        </script>
+      </Helmet>
+
       {/* Breadcrumbs */}
       <div className="bg-white py-4">
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-xs font-body font-bold tracking-widest text-gray-400 uppercase">
-            <Link to="/shop" className="hover:text-[var(--color-primary)] transition-colors">Shop</Link>
+            <Link to="/" className="hover:text-[var(--color-primary)] transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link to={`/shop/${product.category_slug || 'all'}`} className="hover:text-[var(--color-primary)] transition-colors">
-              {product.category_name || 'Custom Gifts'}
+            <Link to={`/shop/${product.category_slug || product.category || 'all'}`} className="hover:text-[var(--color-primary)] transition-colors">
+              {product.category_name || product.category || 'Shop'}
             </Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-gray-900">{product.name}</span>
+            <Link to={`/product/${product.id}`} className="text-gray-900 hover:text-[var(--color-primary)] transition-colors">{product.name}</Link>
           </nav>
         </div>
       </div>
