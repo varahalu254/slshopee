@@ -50,15 +50,9 @@ const DealsSection = () => {
     const overlayClass = deal?.bgImage_url ? "absolute inset-0 bg-white/20 backdrop-blur-xs" : "";
 
     return (
-        <div className={`py-16 md:py-24 relative overflow-hidden ${!deal?.bgImage_url ? 'bg-gradient-to-br from-amber-50 to-orange-50' : ''}`} style={bgStyle}>
+        <div className={`py-16 md:py-24 relative overflow-hidden ${!deal?.bgImage_url ? 'bg-white' : ''}`} style={bgStyle}>
             {deal?.bgImage_url && <div className={overlayClass}></div>}
-            {/* Decorative background elements when no custom image */}
-            {!deal?.bgImage_url && (
-                <>
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                    <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-200/40 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
-                </>
-            )}
+            {/* Removed decorative background elements as per request to keep it white */}
 
             <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">

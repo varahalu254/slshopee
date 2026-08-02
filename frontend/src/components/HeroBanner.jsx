@@ -7,30 +7,29 @@ const HeroBanner = () => {
   const [bgImage, setBgImage] = useState('/assets/products/hero-tv.png');
 
   return (
-    <section className="relative w-full h-[60vh] overflow-hidden">
+    <section className="relative w-full h-[60vh] overflow-hidden bg-white">
       {/* === MOBILE / TABLET: image centered  === */}
-      <div className="absolute inset-0 lg:hidden z-0 flex items-start justify-center pt-0 -translate-y-36">
+      <div className="absolute inset-0 lg:hidden z-0 flex items-start justify-center pt-0 -translate-y-36 bg-white">
         <img
           src={bgImage}
           alt="Hero Background"
-          className="w-[100%] h-[95%] scale-[1.0] lg:translate-y-0 origin-top object-contain filter drop-shadow-xl"
+          className="w-[100%] h-[95%] scale-[1.0] lg:translate-y-0 origin-top object-contain"
         />
-        <div className="absolute inset-x-0 bottom-0 top-1/3 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+
       </div>
 
       {/* === DESKTOP: merged layout === */}
-      <div className="hidden lg:flex absolute inset-0 items-center justify-end z-0">
+      <div className="hidden lg:flex absolute inset-0 items-center justify-end z-0 bg-white">
         {/* Right floating image merged with background */}
-        <div className="relative w-[65%] h-full flex items-center justify-end transform transition-all duration-700 animate-[fadeIn_1s_ease-out]">
+        <div className="relative w-[65%] h-full flex items-center justify-end transform transition-all duration-700 animate-[fadeIn_1s_ease-out] bg-white">
           <img
             src={bgImage}
             alt="Hero Features"
-            className="w-full h-[90%] -mr-24 translate-x-4 object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
+            className="w-full h-[90%] -mr-24 translate-x-4 object-contain"
           />
         </div>
 
-        {/* Gradient merging left text area seamlessly */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white from-10% via-white/20 to-transparent w-full pointer-events-none" />
+        {/* Removed text area gradient to prevent any white layer on image */}
       </div>
 
       {/* Content Container */}
