@@ -175,7 +175,7 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
     <div class="page">
       <div class="header">
         <div><div class="brand-name">SL SHOPEE</div><div class="brand-sub">Customised Gifts &amp; Photography</div>
-        <div class="brand-contact">🌐 slshopee.com<br>📞 +91 9876543210<br>📧 ${import.meta.env.VITE_BUSINESS_EMAIL || 'slshopee@gmail.com'}<br>📍 Bhimavaram, Andhra Pradesh, India</div></div>
+        <div class="brand-contact">🌐 slshopee.com<br>📞 +91 9491766725<br>📧 ${import.meta.env.VITE_BUSINESS_EMAIL || 'contact@slshopee.com'}<br>📍 Kathipudi, Andhra Pradesh, India</div></div>
         <div><div class="invoice-title">INVOICE</div><div class="invoice-num">${o.order_number}</div><div class="invoice-meta">Date: ${dateStr}</div>
         <div class="invoice-meta" style="margin-top:6px;">Payment: <span class="badge">${(o.payment_status || '').toUpperCase()}</span></div></div>
       </div>
