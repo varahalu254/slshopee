@@ -603,6 +603,58 @@ const ProductDetailPage = () => {
                 <span>Quality Guarantee</span>
               </div>
             </div>
+
+            {/* Additional Info moved up */}
+            <div className="mt-10 pt-8 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-y-10">
+                {product.material && (
+                  <div>
+                    <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Material</h5>
+                    <p className="text-sm font-body text-gray-700">{product.material}</p>
+                  </div>
+                )}
+                {product.sizes && product.sizes.length > 0 && (
+                  <div>
+                    <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Available Sizes</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {product.sizes.map((s, i) => {
+                        const label = s?.name || (typeof s === 'string' ? s : '');
+                        return label ? (
+                          <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-body rounded-full">{label}</span>
+                        ) : null;
+                      })}
+                    </div>
+                  </div>
+                )}
+                <div>
+                  <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Care</h5>
+                  <p className="text-sm font-body text-gray-700">Handwash recommended to preserve coating</p>
+                </div>
+                <div>
+                  <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Print Tech</h5>
+                  <p className="text-sm font-body text-gray-700">Thermodynamic Sublimation</p>
+                </div>
+              </div>
+              {product.features && product.features.length > 0 && (
+                <div className="mt-8 pt-8 border-t border-gray-100">
+                  <h4 className="text-xl font-display font-bold text-gray-900 mb-4">Features</h4>
+                  <ul className="list-disc pl-5 space-y-2 text-gray-600 font-body">
+                    {product.features.map((f, i) => {
+                      const isString = typeof f === 'string';
+                      return (
+                        <li key={i}>
+                          {isString ? f : (
+                            <>
+                              <span className="font-semibold text-gray-900">{f.label}:</span> {f.value}
+                            </>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -633,54 +685,7 @@ const ProductDetailPage = () => {
                   <p className="text-gray-500 font-body leading-relaxed mb-10">
                     Our {product.name} is crafted from premium grade materials with a specialized finish. When at room temperature, the item appears as a sleek, matte vessel—perfectly inconspicuous. As you interact with it, the coating becomes transparent, revealing a vibrant, high-definition photo of your choice.
                   </p>
-                  <div className="grid grid-cols-2 gap-y-10">
-                    {product.material && (
-                      <div>
-                        <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Material</h5>
-                        <p className="text-sm font-body text-gray-700">{product.material}</p>
-                      </div>
-                    )}
-                    {product.sizes && product.sizes.length > 0 && (
-                      <div>
-                        <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Available Sizes</h5>
-                        <div className="flex flex-wrap gap-2">
-                          {product.sizes.map((s, i) => {
-                            const label = s?.name || (typeof s === 'string' ? s : '');
-                            return label ? (
-                              <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-body rounded-full">{label}</span>
-                            ) : null;
-                          })}
-                        </div>
-                      </div>
-                    )}
-                    <div>
-                      <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Care</h5>
-                      <p className="text-sm font-body text-gray-700">Handwash recommended to preserve coating</p>
-                    </div>
-                    <div>
-                      <h5 className="text-[10px] font-body font-bold tracking-widest text-gray-400 uppercase mb-2">Print Tech</h5>
-                      <p className="text-sm font-body text-gray-700">Thermodynamic Sublimation</p>
-                    </div>
-                  </div>
-                  {product.features && product.features.length > 0 && (
-                    <div className="mt-8 pt-8 border-t border-gray-100">
-                      <h4 className="text-xl font-display font-bold text-gray-900 mb-4">Features</h4>
-                      <ul className="list-disc pl-5 space-y-2 text-gray-600 font-body">
-                        {product.features.map((f, i) => {
-                          const isString = typeof f === 'string';
-                          return (
-                            <li key={i}>
-                              {isString ? f : (
-                                <>
-                                  <span className="font-semibold text-gray-900">{f.label}:</span> {f.value}
-                                </>
-                              )}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  )}
+
                 </div>
               )}
               {activeTab === 'reviews' && (
