@@ -13,6 +13,8 @@ const ProductManagement = () => {
   const [filterCategory, setFilterCategory] = useState('all'); // Category filter
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newFeatureLabel, setNewFeatureLabel] = useState('');
+  const [newFeatureValue, setNewFeatureValue] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -1019,37 +1021,83 @@ const ProductManagement = () => {
                     <div className="col-span-1">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Features
-                        <span className="ml-1 text-xs text-gray-400 font-normal">(press Enter to add)</span>
                       </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. High quality, Washable"
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            const val = e.target.value.trim();
-                            if (val && !formData.features.includes(val)) {
-                              setFormData({ ...formData, features: [...formData.features, val] });
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Label (e.g. Display)"
+                          value={newFeatureLabel}
+                          onChange={(e) => setNewFeatureLabel(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              if (newFeatureLabel.trim() && newFeatureValue.trim()) {
+                                setFormData({ ...formData, features: [...formData.features, { label: newFeatureLabel.trim(), value: newFeatureValue.trim() }] });
+                                setNewFeatureLabel('');
+                                setNewFeatureValue('');
+                              }
                             }
-                            e.target.value = '';
-                          }
-                        }}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent"
-                      />
+                          }}
+                          className="w-1/3 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent text-sm"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Details (e.g. 6.5 inch OLED)"
+                          value={newFeatureValue}
+                          onChange={(e) => setNewFeatureValue(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              if (newFeatureLabel.trim() && newFeatureValue.trim()) {
+                                setFormData({ ...formData, features: [...formData.features, { label: newFeatureLabel.trim(), value: newFeatureValue.trim() }] });
+                                setNewFeatureLabel('');
+                                setNewFeatureValue('');
+                              }
+                            }
+                          }}
+                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-valentine-red focus:border-transparent text-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (newFeatureLabel.trim() && newFeatureValue.trim()) {
+                              setFormData({ ...formData, features: [...formData.features, { label: newFeatureLabel.trim(), value: newFeatureValue.trim() }] });
+                              setNewFeatureLabel('');
+                              setNewFeatureValue('');
+                            }
+                          }}
+                          className="px-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-200"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </button>
+                      </div>
+
                       {formData.features && formData.features.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {formData.features.map((f, i) => (
-                            <span key={i} className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">
-                              {f}
-                              <button
-                                type="button"
-                                onClick={() => setFormData({ ...formData, features: formData.features.filter((_, idx) => idx !== i) })}
-                                className="text-gray-400 hover:text-red-500"
-                              >
-                                <X className="w-3 h-3" />
-                              </button>
-                            </span>
-                          ))}
+                        <div className="flex flex-col gap-2 mt-3">
+                          {formData.features.map((f, i) => {
+                            const isString = typeof f === 'string';
+                            return (
+                              <div key={i} className="flex justify-between items-center bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg">
+                                <div className="text-sm">
+                                  {isString ? (
+                                    <span className="text-gray-700">{f}</span>
+                                  ) : (
+                                    <>
+                                      <span className="font-semibold text-gray-800">{f.label}:</span>{' '}
+                                      <span className="text-gray-600">{f.value}</span>
+                                    </>
+                                  )}
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => setFormData({ ...formData, features: formData.features.filter((_, idx) => idx !== i) })}
+                                  className="text-gray-400 hover:text-red-500"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            );
+                          })}
                         </div>
                       )}
                     </div>

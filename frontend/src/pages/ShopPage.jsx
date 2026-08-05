@@ -111,20 +111,36 @@ const ShopPage = () => {
 
       {/* Page Title & Filter Bar */}
       {/* Filter & Category Bar */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-gray-100 py-6">
+      <div className="bg-white border-b border-gray-100 py-4 lg:py-6 lg:bg-white/80 lg:backdrop-blur-md">
         <div className="container-custom">
-          {/* Mobile Filter Toggle */}
-          <div className="lg:hidden flex justify-between items-center mb-4">
+          {/* Mobile Sort & Filter Buttons */}
+          <div className="lg:hidden flex bg-white rounded-xl border border-gray-200 mb-4 divide-x divide-gray-200 overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)]">
+            {/* Sort Dropdown Button */}
+            <div className="flex-1 relative">
+              <div className="flex justify-center items-center gap-2 py-3 w-full text-sm font-bold text-gray-700 active:bg-gray-50 transition-colors">
+                <svg className="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"></path>
+                </svg>
+                Sort
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                >
+                  {SORT_OPTIONS.map(opt => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            {/* Filter Toggle Button */}
             <button
               onClick={() => setShowMobileFilters(!showMobileFilters)}
-              className="flex items-center gap-2 text-sm font-bold text-gray-700 bg-gray-100 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+              className={`flex-1 flex justify-center items-center gap-2 py-3 text-sm font-bold transition-colors ${showMobileFilters ? 'text-[var(--color-primary)] bg-[var(--color-primary)]/10' : 'text-gray-700 active:bg-gray-50'}`}
             >
-              <Filter className="w-4 h-4" />
-              {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
+              <Filter className={`w-4 h-4 ${showMobileFilters ? 'text-[var(--color-primary)]' : 'text-gray-500'}`} />
+              Filter
             </button>
-            <p className="text-gray-400 font-body text-sm italic">
-              {displayedProducts.length} items
-            </p>
           </div>
 
           <div className={`flex-col lg:flex-row lg:items-center justify-between gap-6 ${showMobileFilters ? 'flex' : 'hidden lg:flex'}`}>
@@ -188,8 +204,8 @@ const ShopPage = () => {
             </div>
 
             {/* Sort & Stats */}
-            <div className="flex items-center justify-between lg:justify-end gap-4 border-t lg:border-t-0 pt-4 lg:pt-0 w-full lg:w-auto">
-              <div className="relative group min-w-[200px]">
+            <div className="flex items-center justify-between lg:justify-end gap-4 border-t lg:border-t-0 pt-4 lg:pt-0 w-full lg:w-auto mt-4 lg:mt-0">
+              <div className="relative group min-w-[200px] hidden lg:block">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -202,7 +218,7 @@ const ShopPage = () => {
                 <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none group-hover:text-[var(--color-primary)] transition-colors" />
               </div>
 
-              <p className="text-gray-400 font-body text-sm italic hidden sm:block whitespace-nowrap">
+              <p className="text-gray-400 font-body text-sm italic whitespace-nowrap hidden lg:block">
                 Showing {displayedProducts.length} items
               </p>
             </div>
@@ -219,14 +235,14 @@ const ShopPage = () => {
               <p className="text-gray-400 font-body animate-pulse">Gathering Products...</p>
             </div>
           ) : displayedProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 lg:gap-8 border-t border-gray-200 lg:border-none bg-white lg:bg-transparent">
               {displayedProducts.map((product, index) => (
                 <div
                   key={product.id}
-                  className="animate-slide-up"
+                  className="animate-slide-up border-b border-gray-200 lg:border-none"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <ProductCard product={product} showWishlist={true} />
+                  <ProductCard product={product} showWishlist={true} isShopPage={true} />
                 </div>
               ))}
             </div>

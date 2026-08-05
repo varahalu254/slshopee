@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
   material: { type: String, default: null, trim: true },
   sizes: [{ type: mongoose.Schema.Types.Mixed }],
   colors: [{ type: String, trim: true }],
-  features: [{ type: String, trim: true }],
+  features: [{ type: mongoose.Schema.Types.Mixed }],
   valentine_special: { type: Boolean, default: false },
   special_offer: { type: Boolean, default: false },
   stock_quantity: { type: Number, default: 0 },

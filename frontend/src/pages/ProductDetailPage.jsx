@@ -666,9 +666,18 @@ const ProductDetailPage = () => {
                     <div className="mt-8 pt-8 border-t border-gray-100">
                       <h4 className="text-xl font-display font-bold text-gray-900 mb-4">Features</h4>
                       <ul className="list-disc pl-5 space-y-2 text-gray-600 font-body">
-                        {product.features.map((f, i) => (
-                          <li key={i}>{f}</li>
-                        ))}
+                        {product.features.map((f, i) => {
+                          const isString = typeof f === 'string';
+                          return (
+                            <li key={i}>
+                              {isString ? f : (
+                                <>
+                                  <span className="font-semibold text-gray-900">{f.label}:</span> {f.value}
+                                </>
+                              )}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   )}
